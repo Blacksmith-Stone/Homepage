@@ -1,21 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Example from "./Components/NavBar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        
-      </header>
+      <Example />
+      <header className="App-header"></header>
       <body>
-        <div className='inprogress'>
+        <div className="inprogress">
           <span>S</span>
           <span>T</span>
           <span>R</span>
           <span>O</span>
           <span>N</span>
           <span>A</span>
+          <br />
           <span>W</span>
+          <br />
           <span>B</span>
           <span>U</span>
           <span>D</span>
