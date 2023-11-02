@@ -1,12 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Example from "./Components/NavBar";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
     <div className="App">
       <Example />
+
       <header className="App-header"></header>
+
       <body>
         <div className="inprogress">
           <span>S</span>
@@ -26,6 +29,9 @@ function App() {
           <span>I</span>
           <span>E</span>
         </div>
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </div>
   );
