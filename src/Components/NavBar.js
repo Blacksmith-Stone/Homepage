@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import "..\\src\\Components\\ComponentsCSS\\navbar_animation.css";
 
 const navigation = [
   { name: "Home", href: "#" },
@@ -209,24 +210,10 @@ export default function Navbar() {
         {/* Mobile Menu Footer */}
         <div className="absolute bottom-8 left-0 right-0 text-center">
           <p className="text-gray-500 text-sm">
-            © 2024 BSS. All rights reserved.
+            © 2025 BSS. All rights reserved.
           </p>
         </div>
       </div>
-
-      {/* Dodaj style animacji */}
-      <style jsx>{`
-        @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </>
   );
 }

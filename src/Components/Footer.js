@@ -36,7 +36,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <p className="text-gray-400 text-sm">
-          © 2023 Blacksmith Stone. All rights reserved.
+          © 2025 Blacksmith Stone. All rights reserved.
         </p>
       </div>
     </footer>

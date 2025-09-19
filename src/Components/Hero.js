@@ -4,7 +4,7 @@ import {
   SparklesIcon,
   CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
-import "..\\src\\Components\\ComponentsCSS\\animation.css";
+import "..\\src\\Components\\ComponentsCSS\\hero_animation.css";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -188,15 +188,15 @@ const Hero = () => {
           </span>
           <span className="text-gray-700">•</span>
           <span className="hover:text-[#00df9a] transition-colors cursor-default">
-            Next.js
+            Python
           </span>
           <span className="text-gray-700">•</span>
           <span className="hover:text-[#00df9a] transition-colors cursor-default">
-            TypeScript
+            Django
           </span>
           <span className="text-gray-700">•</span>
           <span className="hover:text-[#00df9a] transition-colors cursor-default">
-            Node.js
+            Flask
           </span>
         </div>
       </div>
