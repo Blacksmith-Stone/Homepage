@@ -1,88 +1,232 @@
-import { Disclosure } from "@headlessui/react";
+import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Home", href: "#", current: false },
-  { name: "About", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Gallery", href: "#", current: false },
-  { name: "Contact", href: "#", current: false },
+  { name: "Home", href: "#" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Gallery", href: "#gallery" },
+  { name: "Contact", href: "#contact" },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#");
 
-export default function Example() {
+  // Zablokowanie scrolla przy otwartym menu
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup przy odmontowaniu komponentu
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [menuOpen]);
+
+  // Efekt zmiany tła przy scrollu
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Sprawdź początkową pozycję
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Śledzenie aktywnej sekcji
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navigation.map((item) => item.href);
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        if (section === "#") {
+          if (window.scrollY < 100) {
+            setActiveSection("#");
+            break;
+          }
+        } else {
+          const element = document.querySelector(section);
+          if (element) {
+            const { offsetTop, offsetHeight } = element;
+            if (
+              scrollPosition >= offsetTop &&
+              scrollPosition < offsetTop + offsetHeight
+            ) {
+              setActiveSection(section);
+              break;
+            }
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth scroll do sekcji
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setMenuOpen(false);
+
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        const offsetTop = element.offsetTop - 70;
+        window.scrollTo({ top: offsetTop, behavior: "smooth" });
+      }
+    }
+  };
+
+  // Zamknij menu przy zmianie rozmiaru okna
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <Disclosure as="nav">
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pt-3 ">
-            <div className="relative flex h-16 items-center justify-between  ">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden ">
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="absolute -inset-0.5" />
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
-                <div className="flex flex-shrink-0 items-center ">
-                  <h1 className="w-full text-3xl font-bold text-[#00df9a]">
-                    BSS.
-                  </h1>
-                </div>
-                <div className="hidden sm:flex sm:items-center sm:ml-auto">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-lg font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
+    <>
+      <nav
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled ? "bg-black/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <a
+                href="#"
+                onClick={(e) => handleNavClick(e, "#")}
+                className="text-2xl font-bold text-[#00df9a] hover:text-white transition-colors"
+              >
+                BSS.
+              </a>
+            </div>
+
+            {/* Desktop menu */}
+            <div className="hidden md:flex items-center space-x-1">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                    activeSection === item.href
+                      ? "text-white bg-[#00df9a]/20"
+                      : "text-[#00df9a] hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+
+            {/* Mobile hamburger */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="relative p-2 rounded-md text-[#00df9a] hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-[#00df9a]/50"
+                aria-label="Toggle menu"
+              >
+                <Bars3Icon
+                  className={`h-6 w-6 transition-all duration-300 ${
+                    menuOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0"
+                  }`}
+                />
+              </button>
             </div>
           </div>
+        </div>
+      </nav>
 
-          <Disclosure.Panel className="sm:hidden bg-white fixed inset-x-0 z-50 ">
-            <div className="h-screen flex items-center">
-              <div className="space-y-7 px-2 pb-3 pt-2 mx-auto">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current ? "text-white" : "text-black border-b",
-                      "block rounded-md px-3 py-2 text-2xl font-medium"
-                    )}
-                    aria-current={item.current ? "page" : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
-              </div>
-            </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      {/* Mobile Menu Panel */}
+      <div
+        className={`fixed top-0 right-0 h-full w-full sm:w-80 bg-black/95 backdrop-blur-md z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Close button */}
+        <div className="flex justify-end p-4">
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="p-2 rounded-md text-[#00df9a] hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-[#00df9a]/50"
+            aria-label="Close menu"
+          >
+            <XMarkIcon className="h-6 w-6" />
+          </button>
+        </div>
+
+        {/* Mobile Navigation Links */}
+        <div className="flex flex-col items-center justify-center h-[calc(100%-80px)] space-y-8">
+          {navigation.map((item, index) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
+              className={`text-2xl font-semibold transition-all duration-200 transform hover:scale-110 ${
+                activeSection === item.href
+                  ? "text-white"
+                  : "text-[#00df9a] hover:text-white"
+              }`}
+              style={{
+                animation: menuOpen
+                  ? `slideInRight ${0.3 + index * 0.1}s ease-out`
+                  : "",
+              }}
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+
+        {/* Mobile Menu Footer */}
+        <div className="absolute bottom-8 left-0 right-0 text-center">
+          <p className="text-gray-500 text-sm">
+            © 2024 BSS. All rights reserved.
+          </p>
+        </div>
+      </div>
+
+      {/* Dodaj style animacji */}
+      <style jsx>{`
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
+    </>
   );
 }
