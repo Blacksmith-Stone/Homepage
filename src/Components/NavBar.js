@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import "..\\src\\Components\\ComponentsCSS\\navbar_animation.css";
-
-const navigation = [
-  { name: "Home", href: "#" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Gallery", href: "#gallery" },
-  { name: "Contact", href: "#contact" },
-];
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "./Translations/LanguageContext";
 
 export default function Navbar() {
+  const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("#");
 
+  const navigation = [
+    { name: t("nav.home"), href: "#" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.projects"), href: "#projects" },
+    { name: "Gallery", href: "#gallery" },
+    { name: t("nav.contact"), href: "#contact" },
+  ];
   // Zablokowanie scrolla przy otwartym menu
   useEffect(() => {
     if (menuOpen) {
@@ -137,10 +139,16 @@ export default function Navbar() {
                   {item.name}
                 </a>
               ))}
+
+              {/* Language Switcher dla desktop */}
+              <div className="ml-4">
+                <LanguageSwitcher />
+              </div>
             </div>
 
             {/* Mobile hamburger */}
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center gap-2">
+              <LanguageSwitcher />
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="relative p-2 rounded-md text-[#00df9a] hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-[#00df9a]/50"

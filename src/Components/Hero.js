@@ -5,8 +5,10 @@ import {
   CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
 import "..\\src\\Components\\ComponentsCSS\\hero_animation.css";
+import { useLanguage } from "./Translations/LanguageContext";
 
 const Hero = () => {
+  const { t, language } = useLanguage();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -15,10 +17,13 @@ const Hero = () => {
 
   // Typing effect for tagline
   const [displayedText, setDisplayedText] = useState("");
-  const fullText = "Foundry of Ideas, Forge of Technology";
+  const fullText = t("hero.subtitle");
 
   useEffect(() => {
-    if (isLoaded) {
+    if (isLoaded && fullText) {
+      // Reset animacji przy zmianie języka
+      setDisplayedText("");
+
       let index = 0;
       const timer = setInterval(() => {
         if (index <= fullText.length) {
@@ -28,9 +33,10 @@ const Hero = () => {
           clearInterval(timer);
         }
       }, 50);
+
       return () => clearInterval(timer);
     }
-  }, [isLoaded]);
+  }, [isLoaded, fullText, language]);
 
   const scrollToSection = (sectionId) => {
     const element = document.querySelector(sectionId);
@@ -147,7 +153,7 @@ const Hero = () => {
             isLoaded ? "animate-fade-in-up animation-delay-500" : "opacity-0"
           }`}
         >
-          We craft digital experiences that inspire and innovate
+          {t("hero.description")}
         </p>
 
         {/* CTA Buttons */}
@@ -160,10 +166,10 @@ const Hero = () => {
             onClick={() => scrollToSection("#projects")}
             className="group relative px-8 py-4 bg-[#00df9a] text-black font-bold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,223,154,0.5)] hover:scale-105"
           >
-            <span className="relative z-10">View Our Work</span>
+            <span className="relative z-10"> {t("hero.cta.viewWork")}</span>
             <div className="absolute inset-0 bg-white transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100 origin-left" />
             <span className="absolute inset-0 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold">
-              View Our Work
+              {t("hero.cta.viewWork")}
             </span>
           </button>
 
@@ -172,7 +178,7 @@ const Hero = () => {
             className="group px-8 py-4 rounded-full border-2 border-gray-600 hover:border-[#00df9a] transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,223,154,0.3)] hover:scale-105"
           >
             <span className="bg-gradient-to-r from-gray-400 to-gray-400 group-hover:from-[#00df9a] group-hover:to-white bg-clip-text text-transparent transition-all duration-300">
-              Start a Project
+              {t("hero.cta.startProject")}
             </span>
           </button>
         </div>
@@ -204,7 +210,9 @@ const Hero = () => {
       {/* Scroll */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <div className="flex flex-col items-center gap-2 text-gray-500">
-          <span className="text-xs uppercase tracking-widest">Scroll</span>
+          <span className="text-xs uppercase tracking-widest">
+            {t("hero.scroll")}
+          </span>
           <div className="relative">
             <div className="w-5 h-8 border-2 border-gray-600 rounded-full">
               <div className="w-1 h-2 bg-[#00df9a] rounded-full mx-auto mt-2 animate-scroll-indicator" />
