@@ -6,6 +6,7 @@ import Footer from "./Components/Footer";
 import About from "./Components/Aboutus";
 import Contact from "./Components/Contact";
 import { LanguageProvider } from "./Components/Translations/LanguageContext";
+import "./Components/ComponentsCSS/global.css";
 
 function App() {
   return (

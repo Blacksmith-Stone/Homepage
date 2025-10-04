@@ -88,49 +88,6 @@ const Footer = () => {
 
       {/* Main Footer Content */}
       <div className="relative z-10">
-        {/* Newsletter Section */}
-        <div className="border-t border-gray-800">
-          <div className="max-w-7xl mx-auto px-6 py-12">
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3">
-                    Stay <span className="text-[#00df9a]">Updated</span>
-                  </h3>
-                  <p className="text-gray-400">
-                    Get the latest updates on web technologies and our projects
-                  </p>
-                </div>
-                <form
-                  onSubmit={handleSubscribe}
-                  className="flex flex-col sm:flex-row gap-3"
-                >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-3 bg-black/50 border border-gray-700 rounded-lg focus:outline-none focus:border-[#00df9a] transition-colors"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    className="px-6 py-3 bg-[#00df9a] text-black font-semibold rounded-lg hover:bg-[#00c886] transition-all duration-300 flex items-center justify-center gap-2 group"
-                  >
-                    Subscribe
-                    <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </form>
-              </div>
-              {isSubscribed && (
-                <div className="mt-4 text-[#00df9a] text-sm animate-fade-in-up">
-                  ✓ Thank you for subscribing!
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
         {/* Main Footer Grid */}
         <div className="border-t border-gray-800">
           <div className="max-w-7xl mx-auto px-6 py-12">

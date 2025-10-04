@@ -4,7 +4,7 @@ import {
   SparklesIcon,
   CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
-import "..\\src\\Components\\ComponentsCSS\\hero_animation.css";
+import "./ComponentsCSS/hero_animation.css";
 import { useLanguage } from "./Translations/LanguageContext";
 
 const Hero = () => {
@@ -21,7 +21,6 @@ const Hero = () => {
 
   useEffect(() => {
     if (isLoaded && fullText) {
-      // Reset animacji przy zmianie języka
       setDisplayedText("");
 
       let index = 0;
@@ -45,33 +44,33 @@ const Hero = () => {
     }
   };
 
-  // Generowanie cząsteczek - proste ustawienia
+  // Generowanie cząsteczek
   const particles = Array.from({ length: 12 }, (_, i) => ({
     id: i,
-    size: Math.random() * 2 + 1, // 1-3px
-    left: Math.random() * 100, // losowa pozycja X
-    delay: Math.random() * 5, // losowe opóźnienie startu
-    speed: Math.random() > 0.5 ? "fast" : "slow", // różne prędkości
+    size: Math.random() * 2 + 1,
+    left: Math.random() * 100,
+    delay: Math.random() * 5,
+    speed: Math.random() > 0.5 ? "fast" : "slow",
   }));
 
   return (
-    <section className="relative bg-black text-white min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative bg-bg-primary text-text-primary min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        {/* Statyczna siatka w tle */}
+        {/* Siatka w tle - różna opacity dla light/dark */}
         <div
-          className="absolute inset-0 opacity-5"
+          className="absolute inset-0 opacity-[0.05] dark:opacity-[0.05]"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(0, 223, 154, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0, 223, 154, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(0, 223, 154, 0.2) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 223, 154, 0.2) 1px, transparent 1px)
             `,
             backgroundSize: "100px 100px",
           }}
         />
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black" />
+        {/* Gradient overlay - dostosowany do motywu */}
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/90 via-bg-primary/80 to-bg-primary" />
 
         {/* Cząsteczki lecące do góry */}
         <div className="absolute inset-0">
@@ -89,11 +88,11 @@ const Hero = () => {
                 height: `${particle.size}px`,
                 left: `${particle.left}%`,
                 bottom: "-10px",
-                backgroundColor: "#00df9a",
+                backgroundColor: "rgb(0, 223, 154)",
                 borderRadius: "50%",
-                opacity: 0.7,
+                opacity: 0.4,
                 animationDelay: `${particle.delay}s`,
-                boxShadow: `0 0 ${particle.size * 3}px rgba(0, 223, 154, 0.4)`,
+                boxShadow: `0 0 ${particle.size * 3}px rgba(0, 223, 154, 0.3)`,
               }}
             />
           ))}
@@ -105,21 +104,21 @@ const Hero = () => {
         {/* Tech Icons */}
         <div className="flex justify-center gap-8 mb-8">
           <CodeBracketIcon
-            className={`h-8 w-8 text-[#00df9a] opacity-60 ${
+            className={`h-8 w-8 text-accent opacity-60 ${
               isLoaded
                 ? "animate-fade-in-down animation-delay-100"
                 : "opacity-0"
             }`}
           />
           <SparklesIcon
-            className={`h-8 w-8 text-[#00df9a] opacity-60 ${
+            className={`h-8 w-8 text-accent opacity-60 ${
               isLoaded
                 ? "animate-fade-in-down animation-delay-200"
                 : "opacity-0"
             }`}
           />
           <CubeTransparentIcon
-            className={`h-8 w-8 text-[#00df9a] opacity-60 ${
+            className={`h-8 w-8 text-accent opacity-60 ${
               isLoaded
                 ? "animate-fade-in-down animation-delay-300"
                 : "opacity-0"
@@ -133,23 +132,23 @@ const Hero = () => {
             isLoaded ? "animate-fade-in-up" : "opacity-0"
           }`}
         >
-          <span className="bg-gradient-to-r from-white via-[#00df9a] to-white bg-clip-text text-transparent animate-gradient">
+          <span className="bg-gradient-to-r from-text-primary via-accent to-text-primary bg-clip-text text-transparent animate-gradient">
             Blacksmith Stone
           </span>
         </h1>
 
         {/* Animated Tagline */}
         <p
-          className={`text-xl sm:text-2xl md:text-3xl font-light text-gray-300 mb-4 h-10 ${
+          className={`text-xl sm:text-2xl md:text-3xl font-light text-text-secondary mb-4 h-10 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
           {displayedText}
-          <span className="animate-pulse">|</span>
+          <span className="animate-pulse text-accent">|</span>
         </p>
 
         <p
-          className={`text-base sm:text-lg text-gray-500 mb-12 ${
+          className={`text-base sm:text-lg text-text-muted mb-12 ${
             isLoaded ? "animate-fade-in-up animation-delay-500" : "opacity-0"
           }`}
         >
@@ -164,10 +163,10 @@ const Hero = () => {
         >
           <button
             onClick={() => scrollToSection("#projects")}
-            className="group relative px-8 py-4 bg-[#00df9a] text-black font-bold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,223,154,0.5)] hover:scale-105"
+            className="group relative px-8 py-4 bg-accent text-black font-bold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,223,154,0.5)] hover:scale-105"
           >
-            <span className="relative z-10"> {t("hero.cta.viewWork")}</span>
-            <div className="absolute inset-0 bg-white transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100 origin-left" />
+            <span className="relative z-10">{t("hero.cta.viewWork")}</span>
+            <div className="absolute inset-0 bg-accent-hover transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100 origin-left" />
             <span className="absolute inset-0 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold">
               {t("hero.cta.viewWork")}
             </span>
@@ -175,9 +174,9 @@ const Hero = () => {
 
           <button
             onClick={() => scrollToSection("#contact")}
-            className="group px-8 py-4 rounded-full border-2 border-gray-600 hover:border-[#00df9a] transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,223,154,0.3)] hover:scale-105"
+            className="group px-8 py-4 rounded-full border-2 border-border hover:border-accent transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,223,154,0.3)] hover:scale-105"
           >
-            <span className="bg-gradient-to-r from-gray-400 to-gray-400 group-hover:from-[#00df9a] group-hover:to-white bg-clip-text text-transparent transition-all duration-300">
+            <span className="text-text-secondary group-hover:text-accent transition-all duration-300">
               {t("hero.cta.startProject")}
             </span>
           </button>
@@ -185,23 +184,23 @@ const Hero = () => {
 
         {/* Tech Stack */}
         <div
-          className={`mt-16 flex justify-center gap-4 text-xs sm:text-sm text-gray-600 ${
+          className={`mt-16 flex justify-center gap-4 text-xs sm:text-sm text-text-muted ${
             isLoaded ? "animate-fade-in-up animation-delay-1000" : "opacity-0"
           }`}
         >
-          <span className="hover:text-[#00df9a] transition-colors cursor-default">
+          <span className="hover:text-accent transition-colors cursor-default">
             React
           </span>
-          <span className="text-gray-700">•</span>
-          <span className="hover:text-[#00df9a] transition-colors cursor-default">
+          <span>•</span>
+          <span className="hover:text-accent transition-colors cursor-default">
             Python
           </span>
-          <span className="text-gray-700">•</span>
-          <span className="hover:text-[#00df9a] transition-colors cursor-default">
+          <span>•</span>
+          <span className="hover:text-accent transition-colors cursor-default">
             Django
           </span>
-          <span className="text-gray-700">•</span>
-          <span className="hover:text-[#00df9a] transition-colors cursor-default">
+          <span>•</span>
+          <span className="hover:text-accent transition-colors cursor-default">
             Flask
           </span>
         </div>
@@ -209,13 +208,13 @@ const Hero = () => {
 
       {/* Scroll */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2 text-gray-500">
+        <div className="flex flex-col items-center gap-2 text-text-muted">
           <span className="text-xs uppercase tracking-widest">
             {t("hero.scroll")}
           </span>
           <div className="relative">
-            <div className="w-5 h-8 border-2 border-gray-600 rounded-full">
-              <div className="w-1 h-2 bg-[#00df9a] rounded-full mx-auto mt-2 animate-scroll-indicator" />
+            <div className="w-5 h-8 border-2 border-border rounded-full">
+              <div className="w-1 h-2 bg-accent rounded-full mx-auto mt-2 animate-scroll-indicator" />
             </div>
           </div>
         </div>

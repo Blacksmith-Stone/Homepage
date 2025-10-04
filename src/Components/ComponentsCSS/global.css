@@ -1,0 +1,20 @@
+:root {
+  /* Light theme – Balanced & Neutral */
+  --color-bg-primary: 248 250 252;
+  --color-text-primary: 17 24 39;
+  --color-text-secondary: 75 85 99;
+  --color-text-muted: 120 126 135;
+  --color-border: 221 224 228;
+  --color-accent: 0 200 150;
+}
+
+[data-theme="dark"] {
+  /* Dark theme (domyślny) */
+  --color-bg-primary: 0 0 0;
+  --color-text-primary: 255 255 255;
+  --color-text-secondary: 209 213 219;
+  --color-text-muted: 107 114 128;
+  --color-border: 55 65 81;
+  --color-accent: 0 223 154;
+  --color-accent-hover: 0 200 134;
+}

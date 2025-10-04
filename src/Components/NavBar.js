@@ -3,6 +3,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import "..\\src\\Components\\ComponentsCSS\\navbar_animation.css";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "./Translations/LanguageContext";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -17,6 +18,7 @@ export default function Navbar() {
     { name: "Gallery", href: "#gallery" },
     { name: t("nav.contact"), href: "#contact" },
   ];
+
   // Zablokowanie scrolla przy otwartym menu
   useEffect(() => {
     if (menuOpen) {
@@ -25,7 +27,6 @@ export default function Navbar() {
       document.body.style.overflow = "unset";
     }
 
-    // Cleanup przy odmontowaniu komponentu
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -38,7 +39,7 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Sprawdź początkową pozycję
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -73,7 +74,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navigation]);
 
   // Smooth scroll do sekcji
   const handleNavClick = (e, href) => {
@@ -106,8 +107,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-black/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        className={`fixed top-0 w-full z-50 transition-all duration-300 bg-bg-primary/95 ${
+          scrolled
+            ? "bg-bg-primary/95 backdrop-blur-md shadow-lg border-b border-border"
+            : ""
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,7 +120,7 @@ export default function Navbar() {
               <a
                 href="#"
                 onClick={(e) => handleNavClick(e, "#")}
-                className="text-2xl font-bold text-[#00df9a] hover:text-white transition-colors"
+                className="text-2xl font-bold text-accent hover:text-accent-hover transition-colors"
               >
                 BSS.
               </a>
@@ -132,26 +135,28 @@ export default function Navbar() {
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     activeSection === item.href
-                      ? "text-white bg-[#00df9a]/20"
-                      : "text-[#00df9a] hover:text-white hover:bg-white/10"
+                      ? "text-accent bg-accent/10 shadow-sm"
+                      : "text-text-secondary hover:text-accent hover:bg-accent/5"
                   }`}
                 >
                   {item.name}
                 </a>
               ))}
 
-              {/* Language Switcher dla desktop */}
-              <div className="ml-4">
+              {/* Language & Theme Switchers dla desktop */}
+              <div className="flex items-center gap-2 ml-4">
                 <LanguageSwitcher />
+                <ThemeSwitcher />
               </div>
             </div>
 
             {/* Mobile hamburger */}
             <div className="md:hidden flex items-center gap-2">
               <LanguageSwitcher />
+              <ThemeSwitcher />
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="relative p-2 rounded-md text-[#00df9a] hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-[#00df9a]/50"
+                className="relative p-2 rounded-md text-accent hover:text-accent-hover hover:bg-accent/10 transition-all focus:outline-none focus:ring-2 focus:ring-accent/50"
                 aria-label="Toggle menu"
               >
                 <Bars3Icon
@@ -167,7 +172,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-bg-primary/50 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${
           menuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -177,7 +182,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-80 bg-black/95 backdrop-blur-md z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 h-full w-full sm:w-80 bg-bg-primary backdrop-blur-md z-50 transform transition-transform duration-300 ease-in-out md:hidden border-l border-border ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -185,7 +190,7 @@ export default function Navbar() {
         <div className="flex justify-end p-4">
           <button
             onClick={() => setMenuOpen(false)}
-            className="p-2 rounded-md text-[#00df9a] hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-[#00df9a]/50"
+            className="p-2 rounded-md text-accent hover:text-accent-hover hover:bg-accent/10 transition-all focus:outline-none focus:ring-2 focus:ring-accent/50"
             aria-label="Close menu"
           >
             <XMarkIcon className="h-6 w-6" />
@@ -201,8 +206,8 @@ export default function Navbar() {
               onClick={(e) => handleNavClick(e, item.href)}
               className={`text-2xl font-semibold transition-all duration-200 transform hover:scale-110 ${
                 activeSection === item.href
-                  ? "text-white"
-                  : "text-[#00df9a] hover:text-white"
+                  ? "text-accent"
+                  : "text-text-secondary hover:text-accent"
               }`}
               style={{
                 animation: menuOpen
@@ -217,7 +222,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Footer */}
         <div className="absolute bottom-8 left-0 right-0 text-center">
-          <p className="text-gray-500 text-sm">
+          <p className="text-text-muted text-sm">
             © 2025 BSS. All rights reserved.
           </p>
         </div>
