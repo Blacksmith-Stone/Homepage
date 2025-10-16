@@ -18,18 +18,6 @@ import {
 } from "@heroicons/react/24/outline";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email) {
-      setIsSubscribed(true);
-      setTimeout(() => setIsSubscribed(false), 3000);
-      setEmail("");
-    }
-  };
-
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [

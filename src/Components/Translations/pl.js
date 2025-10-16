@@ -28,6 +28,7 @@ export const pl = {
       team: "Członków zespołu",
       experience: "Lat doświadczenia",
     },
+    tech: "Nasze technologie",
     tabs: {
       mission: {
         title: "Nasza Misja",
@@ -47,54 +48,54 @@ export const pl = {
     },
     values: {
       title: "Nasze Wartości",
-      items: [
-        {
+      items: {
+        innovation: {
           title: "Innowacja",
           description:
             "Przesuwanie granic dzięki najnowocześniejszym technologiom",
         },
-        {
+
+        collaboration: {
           title: "Współpraca",
           description: "Ścisła współpraca z klientami w realizacji ich wizji",
         },
-        {
+        excellence: {
           title: "Doskonałość",
           description:
             "Dostarczanie wysokiej jakości rozwiązań przekraczających oczekiwania",
         },
-        {
+        growth: {
           title: "Rozwój",
           description:
             "Pomaganie firmom w skalowaniu poprzez transformację cyfrową",
         },
-      ],
+      },
     },
     process: {
       title: "Nasz Proces",
-      steps: [
-        {
+      steps: {
+        step1: {
           step: "01",
           title: "Odkrywanie",
           desc: "Zrozumienie Twojej wizji i celów",
         },
-        {
+        step2: {
           step: "02",
           title: "Projektowanie",
           desc: "Tworzenie intuicyjnych doświadczeń użytkownika",
         },
-        {
+        step3: {
           step: "03",
           title: "Rozwój",
           desc: "Budowanie z najnowszą technologią",
         },
-        {
+        step4: {
           step: "04",
           title: "Wdrożenie",
           desc: "Uruchomienie i ciągłe wsparcie",
         },
-      ],
+      },
     },
-    techStackTitle: "Nasz Stos Technologiczny",
   },
   projects: {
     title: "Nasze",

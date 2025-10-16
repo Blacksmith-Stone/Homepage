@@ -34,6 +34,11 @@ module.exports = {
           DEFAULT: "rgb(var(--color-surface) / <alpha-value>)",
           hover: "rgb(var(--color-surface-hover) / <alpha-value>)",
         },
+        card: {
+          bg: "rgb(var(--color-card-bg) / <alpha-value>)",
+          "bg-hover": "rgb(var(--color-card-bg-hover) / <alpha-value>)",
+          border: "rgb(var(--color-card-border) / <alpha-value>)",
+        },
       },
     },
   },

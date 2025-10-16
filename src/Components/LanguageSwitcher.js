@@ -5,7 +5,6 @@ import { GlobeAltIcon } from "@heroicons/react/24/outline";
 const LanguageSwitcher = () => {
   const { language, changeLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const timeoutRef = useRef(null);
   const containerRef = useRef(null);
 
   const languages = [
@@ -42,29 +41,6 @@ const LanguageSwitcher = () => {
 
   const currentLang = languages.find((lang) => lang.code === language);
 
-  // Obsługa hover z opóźnieniem
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsOpen(false);
-    }, 200); // 200ms opóźnienia przed zamknięciem
-  };
-
-  // Czyszczenie timeout przy unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
   // Zamknij menu gdy klikniemy poza nim
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -86,12 +62,7 @@ const LanguageSwitcher = () => {
   }, [isOpen]);
 
   return (
-    <div
-      className="relative"
-      ref={containerRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="relative" ref={containerRef}>
       {/* Main Button - Desktop */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -134,14 +105,7 @@ const LanguageSwitcher = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div
-          className="absolute right-0 mt-2 w-48 bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-xl shadow-2xl shadow-black/50 z-50 overflow-hidden animate-fade-in-down"
-          onMouseEnter={() => {
-            if (timeoutRef.current) {
-              clearTimeout(timeoutRef.current);
-            }
-          }}
-        >
+        <div className="absolute right-0 mt-2 w-48 bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-xl shadow-2xl shadow-black/50 z-50 overflow-hidden animate-fade-in-down">
           <div className="p-2">
             {languages.map((lang, index) => (
               <button

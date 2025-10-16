@@ -27,6 +27,7 @@ export const en = {
       team: "Team Members",
       experience: "Years Experience",
     },
+    tech: "Our Tech Stack",
     tabs: {
       mission: {
         title: "Our Mission",
@@ -46,49 +47,53 @@ export const en = {
     },
     values: {
       title: "Our Core Values",
-      items: [
-        {
+      items: {
+        innovation: {
           title: "Innovation",
           description: "Pushing boundaries with cutting-edge technologies",
         },
-        {
+
+        collaboration: {
           title: "Collaboration",
           description: "Working closely with clients to achieve their vision",
         },
-        {
+        excellence: {
           title: "Excellence",
           description:
             "Delivering high-quality solutions that exceed expectations",
         },
-        {
+        growth: {
           title: "Growth",
           description:
             "Helping businesses scale through digital transformation",
         },
-      ],
+      },
     },
     process: {
       title: "Our Process",
-      steps: [
-        {
+      steps: {
+        step1: {
           step: "01",
           title: "Discover",
           desc: "Understanding your vision and goals",
         },
-        {
+        step2: {
           step: "02",
           title: "Design",
           desc: "Creating intuitive user experiences",
         },
-        {
+        step3: {
           step: "03",
           title: "Develop",
           desc: "Building with cutting-edge tech",
         },
-        { step: "04", title: "Deploy", desc: "Launching and ongoing support" },
-      ],
+        step4: {
+          step: "04",
+          title: "Deploy",
+          desc: "Launching and ongoing support",
+        },
+      },
     },
-    techStackTitle: "Our Tech Stack",
   },
   projects: {
     title: "Our",

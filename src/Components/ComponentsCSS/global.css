@@ -1,11 +1,14 @@
 :root {
-  /* Light theme – Balanced & Neutral */
+  /* Light theme */
   --color-bg-primary: 248 250 252;
   --color-text-primary: 17 24 39;
-  --color-text-secondary: 75 85 99;
+  --color-text-secondary: 0 0 0;
   --color-text-muted: 120 126 135;
   --color-border: 221 224 228;
   --color-accent: 0 200 150;
+  --color-card-bg: 243 244 246; /* gray-100 */
+  --color-card-bg-hover: 229 231 235; /* gray-200 */
+  --color-card-border: 209 213 219; /* gray-300 */
 }
 
 [data-theme="dark"] {
@@ -16,5 +19,7 @@
   --color-text-muted: 107 114 128;
   --color-border: 55 65 81;
   --color-accent: 0 223 154;
-  --color-accent-hover: 0 200 134;
+  --color-card-bg: 17 24 39; /* gray-900 */
+  --color-card-bg-hover: 31 41 55; /* gray-800 */
+  --color-card-border: 55 65 81; /* gray-700 */
 }
