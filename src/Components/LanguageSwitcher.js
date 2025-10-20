@@ -66,13 +66,13 @@ const LanguageSwitcher = () => {
       {/* Main Button - Desktop */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-900/50 backdrop-blur-sm border border-gray-800 hover:border-[#00df9a]/50 hover:bg-gray-900/80 transition-all duration-300 group"
+        className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl bg-bg-primary backdrop-blur-sm border border-border hover:border-accent/30 hover:bg-surface-hover/50 transition-all duration-300 group"
       >
         <div className="relative">
           {currentLang?.flag}
           <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#00df9a] rounded-full animate-pulse" />
         </div>
-        <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+        <span className="text-sm font-medium text-text-secondary  transition-colors">
           {currentLang?.shortName}
         </span>
         <svg
@@ -95,17 +95,17 @@ const LanguageSwitcher = () => {
       {/* Mobile Button - Simplified */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden flex items-center gap-1.5 px-2.5 py-2 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800"
+        className="md:hidden flex items-center gap-1.5 px-2.5 py-2 rounded-lg bg-bg-primary backdrop-blur-sm border border-border"
       >
         {currentLang?.flag}
-        <span className="text-xs font-medium text-gray-300">
+        <span className="text-xs font-medium text-text-secondary">
           {currentLang?.shortName}
         </span>
       </button>
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-gray-900/95 backdrop-blur-md border border-gray-800 rounded-xl shadow-2xl shadow-black/50 z-50 overflow-hidden animate-fade-in-down">
+        <div className="absolute right-0 mt-2 w-48 bg-bg-primary backdrop-blur-md border border-border rounded-xl shadow-2xl shadow-black/50 z-50 overflow-hidden animate-fade-in-down">
           <div className="p-2">
             {languages.map((lang, index) => (
               <button
@@ -116,8 +116,8 @@ const LanguageSwitcher = () => {
                 }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ${
                   language === lang.code
-                    ? "bg-[#00df9a]/20 text-[#00df9a]"
-                    : "hover:bg-gray-800 text-gray-300 hover:text-white"
+                    ? "bg-accent/10 text-accent"
+                    : "hover:bg-bg-primary text-gray-300 hover:text-text-secondary"
                 }`}
               >
                 <div className="relative">

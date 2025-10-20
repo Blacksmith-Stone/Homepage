@@ -33,7 +33,7 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "Anatomia Smaku",
       category: "web",
       description:
         "Modern e-commerce solution with real-time inventory management and AI-powered recommendations",
@@ -51,7 +51,7 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "FinTech Dashboard",
+      title: "Szkoła pływania Delfin",
       category: "web",
       description:
         "Comprehensive financial dashboard with real-time data visualization and analytics",
@@ -106,7 +106,7 @@ const Projects = () => {
     },
     {
       id: 5,
-      title: "Online Learning Platform",
+      title: "SG-Rent",
       category: "ecommerce",
       description:
         "EdTech platform with live streaming, course management, and student analytics",
@@ -125,7 +125,7 @@ const Projects = () => {
     },
     {
       id: 6,
-      title: "Restaurant Chain App",
+      title: "CK-Tronic",
       category: "mobile",
       description:
         "Mobile ordering system with loyalty program and real-time order tracking",
@@ -182,7 +182,10 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="relative bg-black py-20 overflow-hidden">
+    <section
+      id="projects"
+      className="relative bg-bg-primary py-20 overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -200,8 +203,8 @@ const Projects = () => {
             isLoaded ? "animate-fade-in-up" : "opacity-0"
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Our <span className="text-[#00df9a]">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-text-secondary mb-4">
+            Our <span className="text-accent">Projects</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Explore our portfolio of innovative digital solutions that drive
@@ -221,8 +224,8 @@ const Projects = () => {
               onClick={() => filterProjects(cat.id)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
                 filter === cat.id
-                  ? "bg-[#00df9a] text-black shadow-[0_0_20px_rgba(0,223,154,0.5)]"
-                  : "bg-gray-900 text-gray-400 border border-gray-800 hover:border-[#00df9a] hover:text-[#00df9a]"
+                  ? "bg-accent text-black "
+                  : "bg-gray-900 text-gray-400 border border-gray-800 hover:border-accent hover:text-accent"
               }`}
             >
               {cat.icon}
@@ -245,7 +248,7 @@ const Projects = () => {
           {visibleProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`group relative bg-gray-900 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#00df9a]/20 ${
+              className={`group relative bg-gray-900 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/20 ${
                 isLoaded ? "animate-fade-in-up" : "opacity-0"
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -254,7 +257,7 @@ const Projects = () => {
             >
               {/* Featured Badge */}
               {project.featured && (
-                <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-[#00df9a] text-black text-xs font-bold rounded-full">
+                <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold rounded-full">
                   Featured
                 </div>
               )}
@@ -276,24 +279,17 @@ const Projects = () => {
                 >
                   <a
                     href={project.demoUrl}
-                    className="p-3 bg-[#00df9a] text-black rounded-lg hover:bg-[#00c886] transition-colors"
+                    className="p-3 bg-accent text-black rounded-lg  transition-colors"
                     title="Live Demo"
                   >
                     <ArrowTopRightOnSquareIcon className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    className="p-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
-                    title="View Code"
-                  >
-                    <FaGithub className="w-5 h-5" />
                   </a>
                 </div>
               </div>
 
               {/* Project Info */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#00df9a] transition-colors">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
                 <p className="text-gray-400 text-sm mb-4 line-clamp-2">
@@ -305,7 +301,7 @@ const Projects = () => {
                   {project.icons.map((icon, idx) => (
                     <span
                       key={idx}
-                      className="text-gray-500 text-xl hover:text-[#00df9a] transition-colors cursor-pointer"
+                      className="text-gray-500 text-xl hover:text-accent transition-colors cursor-pointer"
                       title={project.tags[idx]}
                     >
                       {icon}
@@ -317,19 +313,19 @@ const Projects = () => {
                 <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-800">
                   <div className="text-center">
                     <p className="text-xs text-gray-500">Users</p>
-                    <p className="text-sm font-semibold text-[#00df9a]">
+                    <p className="text-sm font-semibold text-accent">
                       {project.stats.users}
                     </p>
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-gray-500">Uptime</p>
-                    <p className="text-sm font-semibold text-[#00df9a]">
+                    <p className="text-sm font-semibold text-accent">
                       {project.stats.performance}
                     </p>
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-gray-500">Rating</p>
-                    <p className="text-sm font-semibold text-[#00df9a]">
+                    <p className="text-sm font-semibold text-accent">
                       {project.stats.rating}
                     </p>
                   </div>
@@ -343,17 +339,6 @@ const Projects = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-400 mb-6">
-            Have a project in mind? Let's work together!
-          </p>
-          <button className="px-8 py-4 bg-[#00df9a] text-black font-bold rounded-full hover:bg-[#00c886] transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,223,154,0.5)] hover:scale-105 flex items-center gap-2 mx-auto group">
-            Start Your Project
-            <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
         </div>
       </div>
     </section>

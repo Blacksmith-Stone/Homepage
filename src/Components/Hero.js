@@ -163,7 +163,7 @@ const Hero = () => {
         >
           <button
             onClick={() => scrollToSection("#projects")}
-            className="group relative px-8 py-4 bg-accent text-black font-bold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,223,154,0.5)] hover:scale-105"
+            className="group relative px-8 py-4 bg-accent text-black font-bold rounded-full overflow-hidden transition-all duration-300  hover:scale-105"
           >
             <span className="relative z-10">{t("hero.cta.viewWork")}</span>
             <div className="absolute inset-0 bg-accent-hover transition-transform duration-300 transform scale-x-0 group-hover:scale-x-100 origin-left" />
@@ -174,7 +174,7 @@ const Hero = () => {
 
           <button
             onClick={() => scrollToSection("#contact")}
-            className="group px-8 py-4 rounded-full border-2 border-border hover:border-accent transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,223,154,0.3)] hover:scale-105"
+            className="group px-8 py-4 rounded-full border-2 border-border hover:border-accent transition-all duration-300 hover:scale-105"
           >
             <span className="text-text-secondary group-hover:text-accent transition-all duration-300">
               {t("hero.cta.startProject")}

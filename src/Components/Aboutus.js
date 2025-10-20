@@ -57,8 +57,8 @@ const About = () => {
     },
     {
       icon: <ChartBarIcon className="w-6 h-6" />,
-      title: t("about.values.items.excellence.title"),
-      description: t("about.values.items.excellence.description"),
+      title: t("about.values.items.growth.title"),
+      description: t("about.values.items.growth.description"),
     },
   ];
 
@@ -91,7 +91,7 @@ const About = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-text-secondary mb-4">
             {t("about.title")}{" "}
-            <span className="text-[#00df9a]">Blacksmith Stone</span>
+            <span className="text-accent">Blacksmith Stone</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             {t("about.subtitle")}
@@ -106,7 +106,7 @@ const About = () => {
         >
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#00df9a] mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-accent mb-2">
                 {isVisible && (
                   <CountUp
                     end={stat.number}
@@ -136,7 +136,7 @@ const About = () => {
                   onClick={() => setActiveTab(key)}
                   className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                     activeTab === key
-                      ? "bg-[#00df9a] text-black"
+                      ? "bg-accent text-black"
                       : "bg-gray-900 text-gray-400 hover:text-white"
                   }`}
                 >
@@ -149,28 +149,28 @@ const About = () => {
               <h3 className="text-2xl font-bold text-text-primary mb-4">
                 {tabs[activeTab].title}
               </h3>
-              <p className="text-text-primary leading-relaxed">
+              <p className="text-text-secondary leading-relaxed">
                 {tabs[activeTab].content}
               </p>
             </div>
 
             {/* Tech Stack */}
-            <div className="mt-8">
-              <h4 className="text-lg font-semibold text-text-secondary mb-4">
+            <div className="mt-12 flex flex-col items-center text-center">
+              <h4 className="text-xl font-semibold text-text-secondary mb-6">
                 {t("about.tech")}
               </h4>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap justify-center gap-4 max-w-lg">
                 {[
                   "React",
                   "Django",
-                  "Tailwind",
+                  "Tailwind CSS",
                   "Node.js",
                   "Python",
                   "SQL",
                 ].map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-card-bg text-[#00df9a] rounded-lg text-sm border border-card-borde hover:border-[#00df9a] transition-colors cursor-default"
+                    className="px-4 py-2 bg-card-bg text-accent rounded-full text-sm border border-card-border hover:border-accent hover:shadow-md transition-all cursor-default"
                   >
                     {tech}
                   </span>
@@ -185,27 +185,54 @@ const About = () => {
               isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"
             }`}
           >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="flex-1 h-px bg-border"></div>
-              <h3 className="text-2xl font-bold text-text-primary">
-                {t("about.values.title")}
-              </h3>
-              <div className="flex-1 h-px bg-border"></div>
+            {/* Prosty nagłówek */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-2xl font-bold text-text-secondary">
+                  {t("about.values.title")}
+                </h3>
+                <span className="text-xs text-accent/60 font-medium tracking-wider uppercase">
+                  What drives us
+                </span>
+              </div>
+              <div className="h-0.5 bg-gradient-to-r from-accent/50 via-accent/20 to-transparent rounded-full"></div>
             </div>
-            <div className="space-y-6">
+
+            <div className="space-y-4">
               {values.map((value, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-card-bg/50 border border-card-border hover:border-accent/50 transition-all duration-300 hover:bg-card-bg-hover group"
+                  className={`relative flex items-start gap-4 p-5 rounded-xl 
+          bg-card-bg/50 border border-card-border 
+          hover:border-accent/50 transition-all duration-300 
+          hover:bg-card-bg-hover hover:shadow-lg hover:shadow-accent/10 
+          group overflow-hidden
+          ${
+            isVisible
+              ? `animate-fade-in-up animation-delay-${600 + index * 100}`
+              : "opacity-0"
+          }`}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent group-hover:bg-accent/30 transition-colors">
+                  <div
+                    className="relative flex-shrink-0 w-12 h-12 
+            bg-gradient-to-br from-accent/20 to-accent/30 
+            rounded-lg flex items-center justify-center text-accent 
+            group-hover:from-accent/30 group-hover:to-accent/40 
+            group-hover:scale-110 transition-all duration-300"
+                  >
                     {value.icon}
                   </div>
-                  <div className="flex-1 pt-1">
-                    <h4 className="text-lg font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors">
+                  <div className="relative flex-1 pt-1">
+                    <h4
+                      className="text-lg font-semibold text-text-primary mb-2 
+              group-hover:text-accent transition-colors"
+                    >
                       {value.title}
                     </h4>
-                    <p className="text-text-secondary text-sm leading-relaxed">
+                    <p
+                      className="text-text-secondary text-sm leading-relaxed 
+              group-hover:text-text-secondary/90"
+                    >
                       {value.description}
                     </p>
                   </div>
@@ -254,8 +281,8 @@ const About = () => {
               >
                 {/* Step Circle */}
                 <div className="relative mb-6">
-                  <div className="w-20 h-20 mx-auto bg-gray-900 rounded-full flex items-center justify-center border-2 border-gray-800 group-hover:border-[#00df9a] transition-all duration-500 shadow-md shadow-[#00df9a]/10">
-                    <span className="text-[#00df9a] font-bold text-xl">
+                  <div className="w-20 h-20 mx-auto bg-gray-900 rounded-full flex items-center justify-center border-2 border-gray-800 group-hover:border-accent] transition-all duration-500 shadow-md shadow-[#00df9a]/10">
+                    <span className="text-accent font-bold text-xl">
                       {phase.step}
                     </span>
                   </div>
@@ -263,7 +290,7 @@ const About = () => {
                   {/* Connector Line */}
                   {index < 3 && (
                     <div className="hidden md:block absolute top-1/2 left-full w-full h-[2px] bg-gray-800">
-                      <div className="h-full bg-[#00df9a] scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                      <div className="h-full bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
                     </div>
                   )}
                 </div>
@@ -277,7 +304,7 @@ const About = () => {
                 </p>
 
                 {/* Hover Accent */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-[#00df9a] blur-2xl rounded-full transition-all duration-700" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-accent blur-2xl rounded-full transition-all duration-700" />
               </div>
             ))}
           </div>

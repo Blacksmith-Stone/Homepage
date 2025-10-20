@@ -45,7 +45,6 @@ const Footer = () => {
       name: "Mobile Apps",
     },
     { icon: <PaintBrushIcon className="w-5 h-5" />, name: "UI/UX Design" },
-    { icon: <ServerIcon className="w-5 h-5" />, name: "Backend Solutions" },
   ];
 
   const contactInfo = [
@@ -54,26 +53,12 @@ const Footer = () => {
       text: "hello@blacksmithstone.com",
       href: "mailto:hello@blacksmithstone.com",
     },
-    { icon: <FaPhone />, text: "+1 (555) 123-4567", href: "tel:+15551234567" },
-    { icon: <FaMapMarkerAlt />, text: "San Francisco, CA", href: "#" },
+    { icon: <FaPhone />, text: "+48 111 222 333", href: "tel:+15551234567" },
+    { icon: <FaMapMarkerAlt />, text: "Grudziąc, GR", href: "#" },
   ];
 
   return (
-    <footer className="relative bg-black text-white overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(0, 223, 154, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0, 223, 154, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "50px 50px",
-          }}
-        />
-      </div>
-
+    <footer className="relative bg-bg-primary text-white overflow-hidden">
       {/* Main Footer Content */}
       <div className="relative z-10">
         {/* Main Footer Grid */}
@@ -83,7 +68,7 @@ const Footer = () => {
               {/* Company Info */}
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold">
-                  <span className="text-[#00df9a]">BSS</span>.
+                  <span className="text-accent">BSS.</span>
                 </h2>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Forging digital excellence through innovative web solutions.
@@ -98,7 +83,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:bg-[#00df9a] hover:text-black hover:border-[#00df9a] transition-all duration-300 hover:scale-110"
+                      className="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:bg-accent hover:text-black hover:border-accent transition-all duration-300 hover:scale-110"
                     >
                       {social.icon}
                     </a>
@@ -108,7 +93,7 @@ const Footer = () => {
 
               {/* Quick Links */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 text-white">
+                <h3 className="text-lg font-semibold mb-4 text-text-secondary">
                   Quick Links
                 </h3>
                 <ul className="space-y-3">
@@ -116,9 +101,9 @@ const Footer = () => {
                     <li key={idx}>
                       <a
                         href={link.href}
-                        className="text-gray-400 hover:text-[#00df9a] transition-colors duration-200 text-sm flex items-center gap-2 group"
+                        className="text-gray-400 hover:text-accent transition-colors duration-200 text-sm flex items-center gap-2 group"
                       >
-                        <span className="text-[#00df9a] opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">
                           →
                         </span>
                         <span className="group-hover:translate-x-1 transition-transform">
@@ -132,7 +117,7 @@ const Footer = () => {
 
               {/* Services */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 text-white">
+                <h3 className="text-lg font-semibold mb-4 text-text-secondary">
                   Our Services
                 </h3>
                 <ul className="space-y-3">
@@ -141,10 +126,10 @@ const Footer = () => {
                       key={idx}
                       className="flex items-center gap-3 text-gray-400 text-sm group cursor-pointer"
                     >
-                      <span className="text-[#00df9a] group-hover:scale-110 transition-transform">
+                      <span className="text-accent group-hover:scale-110 transition-transform">
                         {service.icon}
                       </span>
-                      <span className="group-hover:text-[#00df9a] transition-colors">
+                      <span className="group-hover:text-accent transition-colors">
                         {service.name}
                       </span>
                     </li>
@@ -154,7 +139,7 @@ const Footer = () => {
 
               {/* Contact Info */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 text-white">
+                <h3 className="text-lg font-semibold mb-4 text-text-secondary">
                   Get in Touch
                 </h3>
                 <ul className="space-y-3">
@@ -162,9 +147,9 @@ const Footer = () => {
                     <li key={idx}>
                       <a
                         href={info.href}
-                        className="flex items-center gap-3 text-gray-400 text-sm hover:text-[#00df9a] transition-colors group"
+                        className="flex items-center gap-3 text-gray-400 text-sm hover:text-accent transition-colors group"
                       >
-                        <span className="text-[#00df9a] group-hover:scale-110 transition-transform">
+                        <span className="text-accent group-hover:scale-110 transition-transform">
                           {info.icon}
                         </span>
                         <span>{info.text}</span>
@@ -187,21 +172,21 @@ const Footer = () => {
               <div className="flex flex-wrap justify-center gap-4 text-sm">
                 <a
                   href="#privacy"
-                  className="text-gray-500 hover:text-[#00df9a] transition-colors"
+                  className="text-gray-500 hover:text-accent transition-colors"
                 >
                   Privacy Policy
                 </a>
                 <span className="text-gray-700">•</span>
                 <a
                   href="#terms"
-                  className="text-gray-500 hover:text-[#00df9a] transition-colors"
+                  className="text-gray-500 hover:text-accent transition-colors"
                 >
                   Terms of Service
                 </a>
                 <span className="text-gray-700">•</span>
                 <a
                   href="#cookies"
-                  className="text-gray-500 hover:text-[#00df9a] transition-colors"
+                  className="text-gray-500 hover:text-accent transition-colors"
                 >
                   Cookie Policy
                 </a>
@@ -212,7 +197,7 @@ const Footer = () => {
       </div>
 
       {/* Animated gradient line at the very bottom */}
-      <div className="h-1 bg-gradient-to-r from-transparent via-[#00df9a] to-transparent animate-gradient" />
+      <div className="h-1 bg-gradient-to-r from-transparent via-accent to-transparent animate-gradient" />
     </footer>
   );
 };

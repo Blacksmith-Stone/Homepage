@@ -162,18 +162,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative bg-black py-20 overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00df9a]/5 rounded-full blur-3xl animate-pulse" />
-      </div>
-
+    <section
+      id="contact"
+      className="relative bg-bg-primary py-20 overflow-hidden"
+    >
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Let's Build Something{" "}
-            <span className="text-[#00df9a]">Amazing</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-text-secondary mb-4">
+            Let's Build Something <span className="text-accent">Amazing</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Tell us about your project and we'll help bring your vision to life
@@ -192,9 +189,9 @@ const Contact = () => {
               <div className="space-y-4 mb-8">
                 <a
                   href="mailto:hello@blacksmithstone.com"
-                  className="flex items-start gap-4 text-gray-400 hover:text-[#00df9a] transition-colors group"
+                  className="flex items-start gap-4 text-gray-400 hover:text-accent transition-colors group"
                 >
-                  <div className="w-10 h-10 bg-[#00df9a]/10 rounded-lg flex items-center justify-center text-[#00df9a] group-hover:bg-[#00df9a]/20 transition-colors">
+                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center text-accent group-hover:bg-accent/20 transition-colors">
                     <EnvelopeIcon className="w-5 h-5" />
                   </div>
                   <div>
@@ -205,9 +202,9 @@ const Contact = () => {
 
                 <a
                   href="tel:+15551234567"
-                  className="flex items-start gap-4 text-gray-400 hover:text-[#00df9a] transition-colors group"
+                  className="flex items-start gap-4 text-gray-400 hover:text-accent transition-colors group"
                 >
-                  <div className="w-10 h-10 bg-[#00df9a]/10 rounded-lg flex items-center justify-center text-[#00df9a] group-hover:bg-[#00df9a]/20 transition-colors">
+                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center text-accent group-hover:bg-accent/20 transition-colors">
                     <PhoneIcon className="w-5 h-5" />
                   </div>
                   <div>
@@ -217,7 +214,7 @@ const Contact = () => {
                 </a>
 
                 <div className="flex items-start gap-4 text-gray-400">
-                  <div className="w-10 h-10 bg-[#00df9a]/10 rounded-lg flex items-center justify-center text-[#00df9a]">
+                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center text-accent">
                     <MapPinIcon className="w-5 h-5" />
                   </div>
                   <div>
@@ -227,7 +224,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4 text-gray-400">
-                  <div className="w-10 h-10 bg-[#00df9a]/10 rounded-lg flex items-center justify-center text-[#00df9a]">
+                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center text-accent">
                     <ClockIcon className="w-5 h-5" />
                   </div>
                   <div>
@@ -250,7 +247,7 @@ const Contact = () => {
                     <a
                       key={idx}
                       href={social.href}
-                      className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-[#00df9a] hover:text-black transition-all duration-300"
+                      className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-accent hover:text-black transition-all duration-300"
                     >
                       {social.icon}
                     </a>
@@ -259,8 +256,8 @@ const Contact = () => {
               </div>
 
               {/* Quick Response */}
-              <div className="mt-6 p-4 bg-[#00df9a]/10 rounded-lg border border-[#00df9a]/20">
-                <p className="text-[#00df9a] text-sm font-medium flex items-center gap-2">
+              <div className="mt-6 p-4 bg-accent/10 rounded-lg border border-accent/20">
+                <p className="text-accent text-sm font-medium flex items-center gap-2">
                   <SparklesIcon className="w-4 h-4" />
                   Average response time: 12 hours
                 </p>
@@ -277,7 +274,7 @@ const Contact = () => {
                   <span className="text-sm text-gray-400">
                     Step {formStep} of 3
                   </span>
-                  <span className="text-sm text-[#00df9a]">
+                  <span className="text-sm text-accent">
                     {formStep === 1 && "Project Type"}
                     {formStep === 2 && "Project Details"}
                     {formStep === 3 && "Contact Info"}
@@ -285,7 +282,7 @@ const Contact = () => {
                 </div>
                 <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#00df9a] to-[#00c886] transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-accent to-accent transition-all duration-500"
                     style={{ width: `${(formStep / 3) * 100}%` }}
                   />
                 </div>
@@ -314,7 +311,7 @@ const Contact = () => {
                               }
                               className={`p-4 rounded-xl border-2 transition-all duration-300 text-left ${
                                 formData.projectType === type.id
-                                  ? "border-[#00df9a] bg-[#00df9a]/10"
+                                  ? "border-accent bg-accent/10"
                                   : "border-gray-800 hover:border-gray-700"
                               }`}
                             >
@@ -346,7 +343,7 @@ const Contact = () => {
                               onClick={() => handleServiceToggle(service)}
                               className={`px-4 py-2 rounded-full border transition-all duration-300 ${
                                 formData.services.includes(service)
-                                  ? "border-[#00df9a] bg-[#00df9a]/20 text-[#00df9a]"
+                                  ? "border-accent bg-accent/20 text-accent"
                                   : "border-gray-800 text-gray-400 hover:border-gray-700 hover:text-white"
                               }`}
                             >
@@ -379,7 +376,7 @@ const Contact = () => {
                               }
                               className={`px-4 py-3 rounded-lg border transition-all duration-300 ${
                                 formData.budget === range.id
-                                  ? "border-[#00df9a] bg-[#00df9a]/20 text-[#00df9a]"
+                                  ? "border-accent bg-accent/20 text-accent"
                                   : "border-gray-800 text-gray-400 hover:border-gray-700 hover:text-white"
                               }`}
                             >
@@ -407,7 +404,7 @@ const Contact = () => {
                               }
                               className={`px-4 py-3 rounded-lg border transition-all duration-300 ${
                                 formData.timeline === timeline.id
-                                  ? "border-[#00df9a] bg-[#00df9a]/20 text-[#00df9a]"
+                                  ? "border-accent bg-accent/20 text-accent"
                                   : "border-gray-800 text-gray-400 hover:border-gray-700 hover:text-white"
                               }`}
                             >
@@ -432,7 +429,7 @@ const Contact = () => {
                             })
                           }
                           rows={4}
-                          className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#00df9a] transition-colors"
+                          className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
                           placeholder="Describe your project goals, target audience, and any specific requirements..."
                         />
                       </div>
@@ -453,7 +450,7 @@ const Contact = () => {
                             onChange={(e) =>
                               setFormData({ ...formData, name: e.target.value })
                             }
-                            className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#00df9a] transition-colors"
+                            className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
                             placeholder="John Doe"
                             required
                           />
@@ -471,7 +468,7 @@ const Contact = () => {
                                 email: e.target.value,
                               })
                             }
-                            className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#00df9a] transition-colors"
+                            className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
                             placeholder="john@company.com"
                             required
                           />
@@ -492,7 +489,7 @@ const Contact = () => {
                                 company: e.target.value,
                               })
                             }
-                            className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#00df9a] transition-colors"
+                            className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
                             placeholder="Company Inc."
                           />
                         </div>
@@ -509,7 +506,7 @@ const Contact = () => {
                                 phone: e.target.value,
                               })
                             }
-                            className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#00df9a] transition-colors"
+                            className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-white focus:outline-none focus:border-accent transition-colors"
                             placeholder="+1 (555) 123-4567"
                           />
                         </div>
@@ -532,7 +529,7 @@ const Contact = () => {
                               }
                               className={`px-4 py-2 rounded-lg border capitalize transition-all duration-300 ${
                                 formData.preferredContact === method
-                                  ? "border-[#00df9a] bg-[#00df9a]/20 text-[#00df9a]"
+                                  ? "border-accent bg-accent/20 text-accent"
                                   : "border-gray-800 text-gray-400 hover:border-gray-700 hover:text-white"
                               }`}
                             >
@@ -543,8 +540,8 @@ const Contact = () => {
                       </div>
 
                       {/* Project Summary */}
-                      <div className="p-4 bg-[#00df9a]/10 rounded-lg border border-[#00df9a]/20">
-                        <p className="text-[#00df9a] font-medium mb-2">
+                      <div className="p-4 bg-accent/10 rounded-lg border border-accent/20">
+                        <p className="text-accent font-medium mb-2">
                           Project Summary:
                         </p>
                         <div className="space-y-1 text-sm text-gray-400">
@@ -608,7 +605,7 @@ const Contact = () => {
                         disabled={!isStepValid()}
                         className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
                           isStepValid()
-                            ? "bg-[#00df9a] text-black hover:bg-[#00c886]"
+                            ? "bg-accent text-black hover:bg-accent"
                             : "bg-gray-800 text-gray-500 cursor-not-allowed"
                         }`}
                       >
@@ -621,7 +618,7 @@ const Contact = () => {
                         disabled={!isStepValid() || isSubmitting}
                         className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
                           isStepValid() && !isSubmitting
-                            ? "bg-[#00df9a] text-black hover:bg-[#00c886]"
+                            ? "bg-accent text-black hover:bg-accent"
                             : "bg-gray-800 text-gray-500 cursor-not-allowed"
                         }`}
                       >
@@ -643,8 +640,8 @@ const Contact = () => {
               ) : (
                 /* Success Message */
                 <div className="text-center py-12 animate-fade-in-up">
-                  <div className="w-20 h-20 bg-[#00df9a]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckIcon className="w-10 h-10 text-[#00df9a]" />
+                  <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckIcon className="w-10 h-10 text-accent" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-3">
                     Thank You!

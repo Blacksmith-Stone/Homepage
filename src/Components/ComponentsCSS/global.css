@@ -1,11 +1,17 @@
 :root {
   /* Light theme */
-  --color-bg-primary: 248 250 252;
+  /*--color-bg-primary: 248 250 252;
   --color-text-primary: 17 24 39;
   --color-text-secondary: 0 0 0;
   --color-text-muted: 120 126 135;
   --color-border: 221 224 228;
-  --color-accent: 0 200 150;
+  --color-accent: 0 200 150;*/
+  --color-bg-primary: 245 247 250;
+  --color-text-primary: 15 23 42; /* lekko granatowy */
+  --color-text-secondary: 71 85 105;
+  --color-text-muted: 148 163 184;
+  --color-border: 226 232 240;
+  --color-accent: 14 165 233; /* turkusowo-niebieski */
   --color-card-bg: 243 244 246; /* gray-100 */
   --color-card-bg-hover: 229 231 235; /* gray-200 */
   --color-card-border: 209 213 219; /* gray-300 */
