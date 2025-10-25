@@ -1,315 +1,433 @@
-import React, { useState, useEffect } from "react";
-import {
-  CheckCircleIcon,
-  LightBulbIcon,
-  RocketLaunchIcon,
-  UserGroupIcon,
-  ChartBarIcon,
-} from "@heroicons/react/24/outline";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import CountUp from "react-countup";
 import { useLanguage } from "./Translations/LanguageContext";
 
 const About = () => {
-  const { t, language } = useLanguage();
-  const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
+  const [visible, setVisible] = useState(new Set());
+  const refs = useRef({});
   const [activeTab, setActiveTab] = useState("mission");
 
+  // Observer: pokazuje sekcje raz, z lekkim offsetem
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.dataset.id;
+            if (id) setVisible((prev) => new Set(prev).add(id));
+          }
+        }),
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
     );
 
-    const element = document.querySelector("#about");
-    if (element) observer.observe(element);
-
-    return () => {
-      if (element) observer.unobserve(element);
-    };
+    Object.values(refs.current).forEach((el) => el && observer.observe(el));
+    return () =>
+      Object.values(refs.current).forEach((el) => el && observer.unobserve(el));
   }, []);
 
-  const stats = [
-    { number: 20, suffix: "+", label: t("about.stats.projects") },
-    { number: 10, suffix: "+", label: t("about.stats.clients") },
-    { number: 4, suffix: "", label: t("about.stats.team") },
-    { number: 7, suffix: "+", label: t("about.stats.experience") },
+  const stats = useMemo(
+    () => [
+      { number: 20, suffix: "+", label: t("about.stats.projects") },
+      { number: 10, suffix: "+", label: t("about.stats.clients") },
+      { number: 4, suffix: "", label: t("about.stats.team") },
+      { number: 7, suffix: "+", label: t("about.stats.experience") },
+    ],
+    [t]
+  );
+
+  const tabs = useMemo(
+    () => ({
+      mission: {
+        title: t("about.tabs.mission.title"),
+        content: t("about.tabs.mission.content"),
+      },
+      vision: {
+        title: t("about.tabs.vision.title"),
+        content: t("about.tabs.vision.content"),
+      },
+      approach: {
+        title: t("about.tabs.approach.title"),
+        content: t("about.tabs.approach.content"),
+      },
+    }),
+    [t]
+  );
+
+  const values = useMemo(
+    () => [
+      {
+        title: t("about.values.items.innovation.title"),
+        description: t("about.values.items.innovation.description"),
+      },
+      {
+        title: t("about.values.items.collaboration.title"),
+        description: t("about.values.items.collaboration.description"),
+      },
+      {
+        title: t("about.values.items.excellence.title"),
+        description: t("about.values.items.excellence.description"),
+      },
+      {
+        title: t("about.values.items.growth.title"),
+        description: t("about.values.items.growth.description"),
+      },
+    ],
+    [t]
+  );
+
+  const process = useMemo(
+    () => [
+      {
+        step: "01",
+        title: t("about.process.steps.step1.title"),
+        desc: t("about.process.steps.step1.desc"),
+      },
+      {
+        step: "02",
+        title: t("about.process.steps.step2.title"),
+        desc: t("about.process.steps.step2.desc"),
+      },
+      {
+        step: "03",
+        title: t("about.process.steps.step3.title"),
+        desc: t("about.process.steps.step3.desc"),
+      },
+      {
+        step: "04",
+        title: t("about.process.steps.step4.title"),
+        desc: t("about.process.steps.step4.desc"),
+      },
+    ],
+    [t]
+  );
+
+  const techStack = [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "Django",
+    "PostgreSQL",
+    "MongoDB",
+    "AWS",
+    "Docker",
+    "Tailwind CSS",
+    "Figma",
   ];
 
-  const values = [
-    {
-      icon: <LightBulbIcon className="w-6 h-6" />,
-      title: t("about.values.items.innovation.title"),
-      description: t("about.values.items.innovation.description"),
-    },
-    {
-      icon: <UserGroupIcon className="w-6 h-6" />,
-      title: t("about.values.items.collaboration.title"),
-      description: t("about.values.items.collaboration.description"),
-    },
-    {
-      icon: <RocketLaunchIcon className="w-6 h-6" />,
-      title: t("about.values.items.excellence.title"),
-      description: t("about.values.items.excellence.description"),
-    },
-    {
-      icon: <ChartBarIcon className="w-6 h-6" />,
-      title: t("about.values.items.growth.title"),
-      description: t("about.values.items.growth.description"),
-    },
-  ];
-
-  const tabs = {
-    mission: {
-      title: t("about.tabs.mission.title"),
-      content: t("about.tabs.mission.content"),
-    },
-    vision: {
-      title: t("about.tabs.vision.title"),
-      content: t("about.tabs.vision.content"),
-    },
-    approach: {
-      title: t("about.tabs.approach.title"),
-      content: t("about.tabs.approach.content"),
-    },
+  // Tabs: dostępność + obsługa klawiatury
+  const tabKeys = Object.keys(tabs);
+  const onTabKeyDown = (e) => {
+    const currentIndex = tabKeys.indexOf(activeTab);
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      setActiveTab(tabKeys[(currentIndex + 1) % tabKeys.length]);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      setActiveTab(
+        tabKeys[(currentIndex - 1 + tabKeys.length) % tabKeys.length]
+      );
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setActiveTab(tabKeys[0]);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      setActiveTab(tabKeys[tabKeys.length - 1]);
+    }
   };
 
   return (
     <section
       id="about"
-      className="relative bg-bg-primary py-20 overflow-hidden"
+      className="relative bg-black py-28 md:py-32 overflow-hidden"
     >
+      {/* Subtelne tło w stylu Projects */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
+        style={{
+          background:
+            "radial-gradient(800px 400px at 50% 0%, rgba(0,223,154,0.2), transparent 60%)",
+        }}
+      />
+
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        {/* Section Header */}
-        <div
-          className={`text-center mb-16 ${
-            isVisible ? "animate-fade-in-up" : "opacity-0"
+        {/* Header */}
+        <header
+          ref={(el) => (refs.current.hdr = el)}
+          data-id="hdr"
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
+            visible.has("hdr")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-text-secondary mb-4">
-            {t("about.title")}{" "}
-            <span className="text-accent">Blacksmith Stone</span>
+          <h2 className="text-5xl md:text-6xl font-semibold text-white mb-6 tracking-tight ">
+            {t("about.title")}
+            <span className="text-accent">.</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-white text-lg font-light max-w-2xl">
             {t("about.subtitle")}
           </p>
-        </div>
+        </header>
 
-        {/* Stats Section */}
-        <div
-          className={`grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 ${
-            isVisible ? "animate-fade-in-up animation-delay-200" : "opacity-0"
+        {/* Stats */}
+        <section
+          aria-label={t("about.stats.title") || "Stats"}
+          ref={(el) => (refs.current.stats = el)}
+          data-id="stats"
+          className={`grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16 motion-safe:transition-all motion-safe:duration-700 ${
+            visible.has("stats")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
         >
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-accent mb-2">
-                {isVisible && (
-                  <CountUp
-                    end={stat.number}
-                    duration={2.5}
-                    delay={0.5}
-                    suffix={stat.suffix}
-                  />
+          {stats.map((s, i) => (
+            <div
+              key={i}
+              className="group border border-white/10 rounded-2xl p-6 bg-white/5 hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
+              style={{
+                transitionDelay: visible.has("stats") ? `${i * 60}ms` : "0ms",
+              }}
+            >
+              <div className="text-4xl md:text-5xl font-light text-white">
+                {visible.has("stats") ? (
+                  <CountUp end={s.number} suffix={s.suffix} duration={1.4} />
+                ) : (
+                  <span aria-hidden="true">0{s.suffix}</span>
                 )}
+                <span className="sr-only">
+                  {s.number}
+                  {s.suffix}
+                </span>
               </div>
-              <p className="text-gray-400">{stat.label}</p>
+              <p className="mt-2 text-xs md:text-sm uppercase tracking-wider text-gray-500">
+                {s.label}
+              </p>
             </div>
           ))}
-        </div>
+        </section>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Left Side - Tabs */}
+        {/* Tabs + Content */}
+        <section
+          aria-label={t("about.tabs.title") || "About sections"}
+          ref={(el) => (refs.current.tabs = el)}
+          data-id="tabs"
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
+            visible.has("tabs")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
+          }`}
+        >
           <div
-            className={`${
-              isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"
-            }`}
+            role="tablist"
+            aria-label={t("about.tabs.title") || "Tabs"}
+            className="flex gap-8 border-b border-white/10"
+            onKeyDown={onTabKeyDown}
           >
-            <div className="flex gap-4 mb-6">
-              {Object.keys(tabs).map((key) => (
+            {tabKeys.map((key) => {
+              const selected = activeTab === key;
+              return (
                 <button
                   key={key}
+                  id={`tab-${key}`}
+                  role="tab"
+                  aria-selected={selected}
+                  aria-controls={`panel-${key}`}
+                  tabIndex={selected ? 0 : -1}
                   onClick={() => setActiveTab(key)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                    activeTab === key
-                      ? "bg-accent text-black"
-                      : "bg-gray-900 text-gray-400 hover:text-white"
+                  className={`pb-4 text-sm font-light relative focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-sm ${
+                    selected
+                      ? "text-white"
+                      : "text-gray-500 hover:text-gray-300"
                   }`}
                 >
                   {tabs[key].title}
+                  {selected && (
+                    <span className="absolute bottom-0 left-0 right-0 h-px bg-accent" />
+                  )}
                 </button>
-              ))}
-            </div>
-
-            <div className="bg-card-bg rounded-2xl p-8 border border-card-border">
-              <h3 className="text-2xl font-bold text-text-primary mb-4">
-                {tabs[activeTab].title}
-              </h3>
-              <p className="text-text-secondary leading-relaxed">
-                {tabs[activeTab].content}
-              </p>
-            </div>
-
-            {/* Tech Stack */}
-            <div className="mt-12 flex flex-col items-center text-center">
-              <h4 className="text-xl font-semibold text-text-secondary mb-6">
-                {t("about.tech")}
-              </h4>
-              <div className="flex flex-wrap justify-center gap-4 max-w-lg">
-                {[
-                  "React",
-                  "Django",
-                  "Tailwind CSS",
-                  "Node.js",
-                  "Python",
-                  "SQL",
-                ].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 bg-card-bg text-accent rounded-full text-sm border border-card-border hover:border-accent hover:shadow-md transition-all cursor-default"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+              );
+            })}
           </div>
 
-          {/* Right Side - Values */}
+          {/* Panel z delikatnym cross-fade/slide */}
           <div
-            className={`${
-              isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"
-            }`}
+            key={activeTab}
+            id={`panel-${activeTab}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${activeTab}`}
+            className="mt-10 bg-white/5 border border-white/10 rounded-2xl p-8 animate-[fade-slide_300ms_ease-out]"
           >
-            {/* Prosty nagłówek */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-2xl font-bold text-text-secondary">
-                  {t("about.values.title")}
-                </h3>
-                <span className="text-xs text-accent/60 font-medium tracking-wider uppercase">
-                  What drives us
-                </span>
-              </div>
-              <div className="h-0.5 bg-gradient-to-r from-accent/50 via-accent/20 to-transparent rounded-full"></div>
-            </div>
-
-            <div className="space-y-4">
-              {values.map((value, index) => (
-                <div
-                  key={index}
-                  className={`relative flex items-start gap-4 p-5 rounded-xl 
-          bg-card-bg/50 border border-card-border 
-          hover:border-accent/50 transition-all duration-300 
-          hover:bg-card-bg-hover hover:shadow-lg hover:shadow-accent/10 
-          group overflow-hidden
-          ${
-            isVisible
-              ? `animate-fade-in-up animation-delay-${600 + index * 100}`
-              : "opacity-0"
-          }`}
-                >
-                  <div
-                    className="relative flex-shrink-0 w-12 h-12 
-            bg-gradient-to-br from-accent/20 to-accent/30 
-            rounded-lg flex items-center justify-center text-accent 
-            group-hover:from-accent/30 group-hover:to-accent/40 
-            group-hover:scale-110 transition-all duration-300"
-                  >
-                    {value.icon}
-                  </div>
-                  <div className="relative flex-1 pt-1">
-                    <h4
-                      className="text-lg font-semibold text-text-primary mb-2 
-              group-hover:text-accent transition-colors"
-                    >
-                      {value.title}
-                    </h4>
-                    <p
-                      className="text-text-secondary text-sm leading-relaxed 
-              group-hover:text-text-secondary/90"
-                    >
-                      {value.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h3 className="text-2xl font-light text-white mb-4">
+              {tabs[activeTab].title}
+            </h3>
+            <p className="text-gray-400 font-light leading-relaxed">
+              {tabs[activeTab].content}
+            </p>
           </div>
-        </div>
+        </section>
 
-        {/* Process Section */}
-        <div
-          className={`transition-all duration-700 ${
-            isVisible ? "animate-fade-in-up animation-delay-700" : "opacity-0"
+        {/* Values */}
+        <section
+          aria-labelledby="values-heading"
+          ref={(el) => (refs.current.values = el)}
+          data-id="values"
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
+            visible.has("values")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
         >
-          <h3 className="text-2xl font-bold text-text-secondary text-center mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h3 id="values-heading" className="text-3xl font-light text-white">
+              {t("about.values.title") || "Wartości"}
+            </h3>
+            <span className="text-xs text-accent/70 tracking-widest uppercase">
+              Core
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {values.map((v, i) => (
+              <article
+                key={i}
+                className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-accent/60 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
+                style={{
+                  transitionDelay: visible.has("values")
+                    ? `${i * 60}ms`
+                    : "0ms",
+                }}
+              >
+                <h4 className="text-lg text-white font-light mb-2 group-hover:text-accent transition-colors">
+                  {v.title}
+                </h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {v.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Process */}
+        <section
+          aria-labelledby="process-heading"
+          ref={(el) => (refs.current.process = el)}
+          data-id="process"
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
+            visible.has("process")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
+          }`}
+        >
+          <h3
+            id="process-heading"
+            className="text-3xl font-light text-white mb-10"
+          >
             {t("about.process.title")}
           </h3>
 
-          <div className="grid md:grid-cols-4 gap-10">
-            {[
-              {
-                step: "01",
-                title: t("about.process.steps.step1.title"),
-                desc: t("about.process.steps.step1.desc"),
-              },
-              {
-                step: "02",
-                title: t("about.process.steps.step2.title"),
-                desc: t("about.process.steps.step2.desc"),
-              },
-              {
-                step: "03",
-                title: t("about.process.steps.step3.title"),
-                desc: t("about.process.steps.step3.desc"),
-              },
-              {
-                step: "04",
-                title: t("about.process.steps.step4.title"),
-                desc: t("about.process.steps.step4.desc"),
-              },
-            ].map((phase, index) => (
+          <div className="grid md:grid-cols-4 gap-6 md:gap-8">
+            {process.map((p, i) => (
               <div
-                key={index}
-                className="relative flex flex-col items-center text-center group"
+                key={i}
+                className="relative bg-white/5 border border-white/10 rounded-2xl p-6 overflow-hidden group hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors"
+                style={{
+                  transitionDelay: visible.has("process")
+                    ? `${i * 60}ms`
+                    : "0ms",
+                }}
               >
-                {/* Step Circle */}
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 mx-auto bg-gray-900 rounded-full flex items-center justify-center border-2 border-gray-800 group-hover:border-accent] transition-all duration-500 shadow-md shadow-[#00df9a]/10">
-                    <span className="text-accent font-bold text-xl">
-                      {phase.step}
-                    </span>
-                  </div>
-
-                  {/* Connector Line */}
-                  {index < 3 && (
-                    <div className="hidden md:block absolute top-1/2 left-full w-full h-[2px] bg-gray-800">
-                      <div className="h-full bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-                    </div>
-                  )}
+                <div className="absolute -top-12 -right-10 w-32 h-32 rounded-full bg-accent/10 blur-3xl" />
+                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mb-4 bg-white/5">
+                  <span className="text-accent text-sm font-semibold">
+                    {p.step}
+                  </span>
                 </div>
-
-                {/* Text Content */}
-                <h4 className="font-semibold text-text-secondary mb-2 text-lg">
-                  {phase.title}
+                <h4 className="text-white font-light text-lg mb-2">
+                  {p.title}
                 </h4>
-                <p className="text-gray-400 text-sm max-w-[200px] mx-auto">
-                  {phase.desc}
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {p.desc}
                 </p>
-
-                {/* Hover Accent */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-accent blur-2xl rounded-full transition-all duration-700" />
               </div>
             ))}
           </div>
-        </div>
+        </section>
+
+        {/* Tech Stack */}
+        <section
+          aria-labelledby="tech-heading"
+          ref={(el) => (refs.current.tech = el)}
+          data-id="tech"
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
+            visible.has("tech")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
+          }`}
+        >
+          <h3
+            id="tech-heading"
+            className="text-3xl font-light text-white mb-8 text-center"
+          >
+            {t("about.tech")}
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {techStack.map((tech, i) => (
+              <span
+                key={tech}
+                className="px-5 py-2.5 rounded-full border border-white/10 text-gray-300 text-sm bg-white/5 hover:border-accent hover:text-white transition-colors"
+                style={{
+                  transitionDelay: visible.has("tech") ? `${i * 25}ms` : "0ms",
+                }}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section
+          ref={(el) => (refs.current.cta = el)}
+          data-id="cta"
+          className={`text-center motion-safe:transition-all motion-safe:duration-700 ${
+            visible.has("cta")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
+          }`}
+        >
+          <p className="text-2xl md:text-3xl font-light text-white mb-8">
+            Gotowy na współpracę?
+          </p>
+          <a
+            href="#contact"
+            className="group inline-flex items-center justify-center px-8 py-4 border border-white text-white hover:bg-white hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+          >
+            Rozpocznij projekt
+            <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+        </section>
       </div>
+
+      {/* Keyframes dla fade-slide panelu */}
+      <style jsx>{`
+        @keyframes fade-slide {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 };
