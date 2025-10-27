@@ -104,17 +104,13 @@ const About = () => {
 
   const techStack = [
     "React",
-    "Next.js",
-    "TypeScript",
     "Node.js",
     "Python",
     "Django",
-    "PostgreSQL",
+    "SQL",
     "MongoDB",
-    "AWS",
     "Docker",
     "Tailwind CSS",
-    "Figma",
   ];
 
   // Tabs: dostępność + obsługa klawiatury
@@ -177,7 +173,7 @@ const About = () => {
           {stats.map((s, i) => (
             <div
               key={i}
-              className="group border border-white/10 rounded-2xl p-6 bg-white/5 hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
+              className="group border border-card-border rounded-2xl p-6 bg-white/5 hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
               style={{
                 transitionDelay: visible.has("stats") ? `${i * 60}ms` : "0ms",
               }}
@@ -249,7 +245,7 @@ const About = () => {
             id={`panel-${activeTab}`}
             role="tabpanel"
             aria-labelledby={`tab-${activeTab}`}
-            className="mt-10 bg-white/5 border border-white/10 rounded-2xl p-8 animate-[fade-slide_300ms_ease-out]"
+            className="mt-10 bg-white/5 border border-card-border rounded-2xl p-8 animate-[fade-slide_300ms_ease-out]"
           >
             <h3 className="text-2xl font-light text-text-primary mb-4">
               {tabs[activeTab].title}
@@ -287,14 +283,14 @@ const About = () => {
             {values.map((v, i) => (
               <article
                 key={i}
-                className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-accent/60 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
+                className="group bg-white/5 border border-card-border rounded-2xl p-6 hover:border-accent/60 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
                 style={{
                   transitionDelay: visible.has("values")
                     ? `${i * 60}ms`
                     : "0ms",
                 }}
               >
-                <h4 className="text-lg text-text-primary font-bold mb-2 group-hover:text-accent transition-colors">
+                <h4 className="text-lg text-text-primary mb-2 group-hover:text-accent transition-colors">
                   {v.title}
                 </h4>
                 <p className="text-text-muted text-sm leading-relaxed">
@@ -327,7 +323,7 @@ const About = () => {
             {process.map((p, i) => (
               <div
                 key={i}
-                className="relative bg-white/5 border border-white/10 rounded-2xl p-6 overflow-hidden group hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors"
+                className="relative bg-white/5 border border-card-border rounded-2xl p-6 overflow-hidden group hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors"
                 style={{
                   transitionDelay: visible.has("process")
                     ? `${i * 60}ms`
@@ -372,7 +368,7 @@ const About = () => {
             {techStack.map((tech, i) => (
               <span
                 key={tech}
-                className="px-5 py-2.5 rounded-full border border-white/10 text-gray-300 text-sm bg-white/5 hover:border-accent hover:text-white transition-colors"
+                className="px-5 py-2.5 rounded-full border border-card-border text-gray-300 text-sm bg-white/5 hover:border-accent hover:text-white transition-colors"
                 style={{
                   transitionDelay: visible.has("tech") ? `${i * 25}ms` : "0ms",
                 }}
@@ -398,7 +394,7 @@ const About = () => {
           </p>
           <a
             href="#contact"
-            className="group inline-flex items-center justify-center px-8 py-4 border border-white text-text-primary hover:bg-white hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+            className="group inline-flex items-center justify-center px-8 py-4 border border-card-border text-text-primary hover:bg-white hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
           >
             Rozpocznij projekt
             <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">

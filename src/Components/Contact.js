@@ -200,7 +200,7 @@ const Contact = () => {
                         <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                           Email
                         </p>
-                        <p className="text-text-primary group-hover:text-accent transition-colors duration-300">
+                        <p className="text-text-muted group-hover:text-accent transition-colors duration-300">
                           hello@blacksmithstone.com
                         </p>
                       </div>
@@ -216,7 +216,7 @@ const Contact = () => {
                         <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                           Telefon
                         </p>
-                        <p className="text-text-primary group-hover:text-accent transition-colors duration-300">
+                        <p className="text-text-muted group-hover:text-accent transition-colors duration-300">
                           +48 123 456 789
                         </p>
                       </div>
@@ -231,7 +231,7 @@ const Contact = () => {
                       <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                         Lokalizacja
                       </p>
-                      <p className="text-text-primary">Grudziądz, Poland</p>
+                      <p className="text-text-muted">Grudziądz, Poland</p>
                     </div>
                   </div>
 
@@ -243,7 +243,7 @@ const Contact = () => {
                       <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                         Czas odpowiedzi
                       </p>
-                      <p className="text-text-primary">Do 12 godzin</p>
+                      <p className="text-text-muted">Do 12 godzin</p>
                     </div>
                   </div>
                 </div>
@@ -327,9 +327,9 @@ const Contact = () => {
                                   projectType: type.id,
                                 })
                               }
-                              className={`relative p-5 rounded-xl border-2 text-left transition-all duration-200 transform ${
+                              className={`relative p-5 rounded-xl border-2 text-left transition-all duration-200 ${
                                 formData.projectType === type.id
-                                  ? "border-accent bg-accent/5 scale-[1.02] shadow-lg"
+                                  ? "border-accent bg-accent/5 shadow-lg"
                                   : "border-border hover:border-accent/50 hover:shadow-md bg-bg-primary"
                               }`}
                             >
@@ -362,9 +362,9 @@ const Contact = () => {
                               key={service}
                               type="button"
                               onClick={() => handleServiceToggle(service)}
-                              className={`px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all duration-200 transform ${
+                              className={`px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all duration-200 ${
                                 formData.services.includes(service)
-                                  ? "border-accent text-white bg-accent scale-105 shadow-md"
+                                  ? "border-accent text-white bg-accent shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
@@ -391,9 +391,9 @@ const Contact = () => {
                               onClick={() =>
                                 setFormData({ ...formData, budget: range.id })
                               }
-                              className={`px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 transform ${
+                              className={`px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 ${
                                 formData.budget === range.id
-                                  ? "border-accent text-white bg-accent scale-105 shadow-md"
+                                  ? "border-accent text-white bg-accent shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
@@ -418,9 +418,9 @@ const Contact = () => {
                                   timeline: timeline.id,
                                 })
                               }
-                              className={`px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 transform ${
+                              className={`px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 ${
                                 formData.timeline === timeline.id
-                                  ? "border-accent text-white bg-accent scale-105 shadow-md"
+                                  ? "border-accent text-white bg-accent shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
@@ -583,31 +583,32 @@ const Contact = () => {
                     </div>
                   )}
 
-                  {/* Navigation */}
+                  {/* Navigation Buttons */}
                   <div className="flex justify-between items-center mt-10 pt-8 border-t border-border">
-                    <button
-                      type="button"
-                      onClick={nextStep}
-                      disabled={!isStepValid()}
-                      className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform ${
-                        isStepValid()
-                          ? "bg-accent text-bg-primary hover:bg-accent/90 hover:scale-105 shadow-lg"
-                          : "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      }`}
-                    >
-                      <ArrowLongLeftIcon className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-                      Wstecz
-                    </button>
+                    {/* Przycisk Wstecz - tylko gdy formStep > 1 */}
+                    {formStep > 1 ? (
+                      <button
+                        type="button"
+                        onClick={prevStep}
+                        className="group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold border-2 border-border text-text-primary bg-bg-primary hover:border-accent/50 hover:bg-accent/5 transition-all duration-200"
+                      >
+                        <ArrowLongLeftIcon className="w-5 h-5 transition-transform duration-200 group-hover:-translate-x-1" />
+                        Wstecz
+                      </button>
+                    ) : (
+                      <div></div>
+                    )}
 
+                    {/* Przycisk Dalej / Wyślij */}
                     {formStep < 3 ? (
                       <button
                         type="button"
                         onClick={nextStep}
                         disabled={!isStepValid()}
-                        className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform ${
+                        className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 ${
                           isStepValid()
-                            ? "bg-accent text-text-secondary hover:bg-accent/90 hover:scale-105 shadow-lg"
-                            : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            ? "bg-accent text-white hover:bg-accent/90 hover:shadow-lg active:scale-95"
+                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
                         }`}
                       >
                         Dalej
@@ -617,10 +618,10 @@ const Contact = () => {
                       <button
                         type="submit"
                         disabled={!isStepValid() || isSubmitting}
-                        className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform ${
+                        className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 ${
                           isStepValid() && !isSubmitting
-                            ? "bg-accent text-text-secondary hover:bg-accent/90 hover:scale-105 shadow-lg"
-                            : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                            ? "bg-accent text-white hover:bg-accent/90 hover:shadow-lg active:scale-95"
+                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
                         }`}
                       >
                         {isSubmitting ? (
@@ -639,7 +640,7 @@ const Contact = () => {
                   </div>
                 </form>
               ) : (
-                /* Success */
+                /* Success Message */
                 <div className="text-center py-20 animate-slideIn">
                   <div className="w-16 h-16 rounded-full bg-accent/10 border-2 border-accent flex items-center justify-center mx-auto mb-6 animate-scaleIn">
                     <CheckIcon

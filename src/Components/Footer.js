@@ -70,7 +70,7 @@ const Footer = () => {
                 <h2 className="text-3xl font-bold">
                   <span className="text-accent">BSS.</span>
                 </h2>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-text-muted text-sm leading-relaxed">
                   Forging digital excellence through innovative web solutions.
                   We transform ideas into powerful digital experiences.
                 </p>
@@ -83,7 +83,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-900 border border-gray-800 text-gray-400 hover:bg-accent hover:text-black hover:border-accent transition-all duration-300 hover:scale-110"
+                      className="w-10 h-10 flex items-center justify-center rounded-lg bg-card-bg border border-card-border text-text-secondary hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 hover:scale-110"
                     >
                       {social.icon}
                     </a>
@@ -93,7 +93,7 @@ const Footer = () => {
 
               {/* Quick Links */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 text-text-secondary">
+                <h3 className="text-lg mb-4 text-text-secondary">
                   Quick Links
                 </h3>
                 <ul className="space-y-3">
@@ -117,7 +117,7 @@ const Footer = () => {
 
               {/* Services */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 text-text-secondary">
+                <h3 className="text-lg mb-4 text-text-secondary">
                   Our Services
                 </h3>
                 <ul className="space-y-3">
@@ -139,7 +139,7 @@ const Footer = () => {
 
               {/* Contact Info */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 text-text-secondary">
+                <h3 className="text-lg mb-4 text-text-secondary">
                   Get in Touch
                 </h3>
                 <ul className="space-y-3">
