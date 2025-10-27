@@ -212,7 +212,7 @@ const Projects = () => {
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
         {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/90 animate-fadeIn"
           onClick={onClose}
         />
 
@@ -333,14 +333,14 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="bg-black py-32">
+    <section id="projects" className="bg-bg-primary py-32">
       <div className="max-w-7xl mx-auto px-6">
         {/* Minimalist Header */}
         <div className="mb-20">
-          <h2 className="text-5xl md:text-6xl font-semibold text-white mb-6 tracking-tight ">
+          <h2 className="text-5xl md:text-6xl text-text-primary mb-6 tracking-tight ">
             Nasze Projekty<span className="text-accent">.</span>
           </h2>
-          <p className="text-white text-lg font-light max-w-2xl">
+          <p className="text-text-secondary text-lg font-light max-w-2xl">
             Tworzymy rozwiązania, które łączą minimalizm z funkcjonalnością
           </p>
         </div>
@@ -353,7 +353,7 @@ const Projects = () => {
               onClick={() => setFilter(cat.id)}
               className={`pb-4 text-sm font-weight transition-all relative ${
                 filter === cat.id
-                  ? "text-white"
+                  ? "text-accent"
                   : "text-gray-500 hover:text-gray-300"
               }`}
             >
@@ -398,12 +398,14 @@ const Projects = () => {
               {/* Content */}
               <div>
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-2xl font-light text-white group-hover:text-accent transition-colors">
+                  <h3 className="text-2xl font-light text-text-primary group-hover:text-accent transition-colors">
                     {project.title}
                   </h3>
-                  <span className="text-xs text-gray-600">{project.year}</span>
+                  <span className="text-xs text-text-muted">
+                    {project.year}
+                  </span>
                 </div>
-                <p className="text-gray-400 font-weight leading-relaxed">
+                <p className="text-text-muted font-weight leading-relaxed">
                   {project.description}
                 </p>
               </div>

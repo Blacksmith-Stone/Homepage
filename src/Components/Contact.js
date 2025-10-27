@@ -5,6 +5,7 @@ import {
   MapPinIcon,
   CheckIcon,
   ArrowLongRightIcon,
+  ArrowLongLeftIcon,
   ClockIcon,
 } from "@heroicons/react/24/outline";
 import { FaLinkedin, FaTwitter, FaGithub, FaWhatsapp } from "react-icons/fa";
@@ -153,7 +154,7 @@ const Contact = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="bg-black py-32 overflow-hidden font-sans antialiased"
+      className="bg-bg-primary py-32 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
@@ -162,10 +163,10 @@ const Contact = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <h2 className="text-5xl md:text-6xl font-semibold text-white mb-6 tracking-tight ">
+          <h2 className="text-5xl md:text-6xl text-text-primary mb-6 tracking-tight font-light">
             Zbudujmy coś niesamowitego<span className="text-accent">.</span>
           </h2>
-          <p className="text-white text-lg max-w-2xl leading-relaxed">
+          <p className="text-text-secondary text-lg font-light max-w-2xl">
             Opowiedz nam o swoim projekcie, a my przekształcimy wizję w
             rzeczywistość
           </p>
@@ -182,24 +183,24 @@ const Contact = () => {
           >
             <div className="space-y-8 sticky top-24">
               <div>
-                <h3 className="text-xs uppercase tracking-widest text-gray-500 mb-8 font-semibold">
+                <h3 className="text-xs uppercase tracking-widest text-text-secondary mb-8">
                   Informacje
                 </h3>
 
-                <div className="space-y-6">
+                <div className="space-y-6 text-justify">
                   <a
                     href="mailto:hello@blacksmithstone.com"
                     className="group block"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 group-hover:border-accent group-hover:text-accent transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted group-hover:border-accent group-hover:text-accent transition-all duration-300">
                         <EnvelopeIcon className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">
+                        <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                           Email
                         </p>
-                        <p className="text-white group-hover:text-accent transition-colors duration-300">
+                        <p className="text-text-primary group-hover:text-accent transition-colors duration-300">
                           hello@blacksmithstone.com
                         </p>
                       </div>
@@ -208,14 +209,14 @@ const Contact = () => {
 
                   <a href="tel:+48123456789" className="group block">
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 group-hover:border-accent group-hover:text-accent transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted group-hover:border-accent group-hover:text-accent transition-all duration-300">
                         <PhoneIcon className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">
+                        <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                           Telefon
                         </p>
-                        <p className="text-white group-hover:text-accent transition-colors duration-300">
+                        <p className="text-text-primary group-hover:text-accent transition-colors duration-300">
                           +48 123 456 789
                         </p>
                       </div>
@@ -223,34 +224,34 @@ const Contact = () => {
                   </a>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400">
+                    <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted">
                       <MapPinIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">
+                      <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                         Lokalizacja
                       </p>
-                      <p className="text-white">Grudziądz, Poland</p>
+                      <p className="text-text-primary">Grudziądz, Poland</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 pt-4 border-t border-white/10">
-                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-accent">
+                  <div className="flex items-start gap-4 pt-4 border-t border-border">
+                    <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-accent">
                       <ClockIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">
+                      <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                         Czas odpowiedzi
                       </p>
-                      <p className="text-white">Do 12 godzin</p>
+                      <p className="text-text-primary">Do 12 godzin</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Social Links */}
-              <div className="pt-8 border-t border-white/10">
-                <p className="text-xs uppercase tracking-widest text-gray-500 mb-6 font-semibold">
+              <div className="pt-8 border-t border-border">
+                <p className="text-xs uppercase tracking-widest text-text-secondary mb-6">
                   Social Media
                 </p>
                 <div className="flex gap-4">
@@ -263,7 +264,7 @@ const Contact = () => {
                     <a
                       key={idx}
                       href={social.href}
-                      className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:border-accent hover:text-accent transition-all duration-300 transform hover:scale-110"
+                      className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted hover:border-accent hover:text-accent transition-all duration-300 transform hover:scale-110"
                     >
                       {social.icon}
                     </a>
@@ -281,14 +282,14 @@ const Contact = () => {
                 : "opacity-0 translate-y-4"
             }`}
           >
-            <div className="bg-gradient-to-br from-gray-900/60 to-gray-900/40 border border-white/10 p-8 md:p-10">
+            <div className="bg-bg-primary shadow-xl rounded-2xl border border-border p-8 md:p-10">
               {/* Progress */}
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-gray-400 font-medium">
+                  <span className="text-sm text-text-muted font-medium">
                     Krok {formStep}/3
                   </span>
-                  <span className="text-sm text-white font-semibold">
+                  <span className="text-sm text-text-primary font-medium">
                     {formStep === 1 && "Typ projektu"}
                     {formStep === 2 && "Szczegóły"}
                     {formStep === 3 && "Twoje dane"}
@@ -298,8 +299,8 @@ const Contact = () => {
                   {[1, 2, 3].map((step) => (
                     <div
                       key={step}
-                      className={`h-1 flex-1 transition-all duration-300 ease-out ${
-                        step <= formStep ? "bg-accent" : "bg-white/10"
+                      className={`h-1 flex-1 rounded-full transition-all duration-300 ease-out ${
+                        step <= formStep ? "bg-accent" : "bg-border"
                       }`}
                     />
                   ))}
@@ -312,7 +313,7 @@ const Contact = () => {
                   {formStep === 1 && (
                     <div key="step1" className="space-y-10 animate-slideIn">
                       <div>
-                        <label className="block text-white text-base font-semibold mb-6">
+                        <label className="block text-text-primary text-base font-medium mb-6">
                           Jakiego typu projekt Cię interesuje?
                         </label>
                         <div className="grid sm:grid-cols-2 gap-4">
@@ -326,21 +327,24 @@ const Contact = () => {
                                   projectType: type.id,
                                 })
                               }
-                              className={`relative p-5 border text-left transition-all duration-200 transform ${
+                              className={`relative p-5 rounded-xl border-2 text-left transition-all duration-200 transform ${
                                 formData.projectType === type.id
-                                  ? "border-accent bg-accent/10 scale-[1.02]"
-                                  : "border-white/20 hover:border-white/40 hover:bg-white/5"
+                                  ? "border-accent bg-accent/5 scale-[1.02] shadow-lg"
+                                  : "border-border hover:border-accent/50 hover:shadow-md bg-bg-primary"
                               }`}
                             >
-                              <p className="text-white font-semibold mb-1">
+                              <p className="text-text-primary font-medium mb-1">
                                 {type.label}
                               </p>
-                              <p className="text-sm text-gray-400 leading-relaxed">
+                              <p className="text-sm text-text-muted">
                                 {type.description}
                               </p>
                               {formData.projectType === type.id && (
-                                <div className="absolute top-5 right-5 w-5 h-5 rounded-full border-2 border-accent flex items-center justify-center">
-                                  <div className="w-2 h-2 rounded-full bg-accent" />
+                                <div className="absolute top-5 right-5 w-5 h-5 rounded-full bg-accent flex items-center justify-center">
+                                  <CheckIcon
+                                    className="w-3 h-3 text-white"
+                                    strokeWidth={3}
+                                  />
                                 </div>
                               )}
                             </button>
@@ -349,7 +353,7 @@ const Contact = () => {
                       </div>
 
                       <div>
-                        <label className="block text-white text-base font-semibold mb-6">
+                        <label className="block text-text-primary text-base font-medium mb-6">
                           Których usług potrzebujesz?
                         </label>
                         <div className="flex flex-wrap gap-3">
@@ -358,10 +362,10 @@ const Contact = () => {
                               key={service}
                               type="button"
                               onClick={() => handleServiceToggle(service)}
-                              className={`px-5 py-2.5 border text-sm font-medium transition-all duration-200 transform ${
+                              className={`px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all duration-200 transform ${
                                 formData.services.includes(service)
-                                  ? "border-accent text-accent bg-accent/10 scale-105"
-                                  : "border-white/20 text-gray-400 hover:border-white/40 hover:text-white hover:bg-white/5"
+                                  ? "border-accent text-white bg-accent scale-105 shadow-md"
+                                  : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
                               {service}
@@ -376,7 +380,7 @@ const Contact = () => {
                   {formStep === 2 && (
                     <div key="step2" className="space-y-10 animate-slideIn">
                       <div>
-                        <label className="block text-white text-base font-semibold mb-6">
+                        <label className="block text-text-primary text-base font-medium mb-6">
                           Jaki jest Twój budżet?
                         </label>
                         <div className="grid sm:grid-cols-3 gap-3">
@@ -387,10 +391,10 @@ const Contact = () => {
                               onClick={() =>
                                 setFormData({ ...formData, budget: range.id })
                               }
-                              className={`px-4 py-3 border text-sm font-medium transition-all duration-200 transform ${
+                              className={`px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 transform ${
                                 formData.budget === range.id
-                                  ? "border-accent text-accent bg-accent/10 scale-105"
-                                  : "border-white/20 text-gray-400 hover:border-white/40 hover:text-white hover:bg-white/5"
+                                  ? "border-accent text-white bg-accent scale-105 shadow-md"
+                                  : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
                               {range.label}
@@ -400,7 +404,7 @@ const Contact = () => {
                       </div>
 
                       <div>
-                        <label className="block text-white text-base font-semibold mb-6">
+                        <label className="block text-text-primary text-base font-medium mb-6">
                           Jaki jest deadline?
                         </label>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -414,10 +418,10 @@ const Contact = () => {
                                   timeline: timeline.id,
                                 })
                               }
-                              className={`px-4 py-3 border text-sm font-medium transition-all duration-200 transform ${
+                              className={`px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 transform ${
                                 formData.timeline === timeline.id
-                                  ? "border-accent text-accent bg-accent/10 scale-105"
-                                  : "border-white/20 text-gray-400 hover:border-white/40 hover:text-white hover:bg-white/5"
+                                  ? "border-accent text-white bg-accent scale-105 shadow-md"
+                                  : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
                               {timeline.label}
@@ -427,7 +431,7 @@ const Contact = () => {
                       </div>
 
                       <div>
-                        <label className="block text-white text-base font-semibold mb-6">
+                        <label className="block text-text-primary text-base font-medium mb-6">
                           Opowiedz nam o projekcie
                         </label>
                         <textarea
@@ -439,7 +443,7 @@ const Contact = () => {
                             })
                           }
                           rows={6}
-                          className="w-full px-5 py-4 bg-black/40 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black/60 transition-all duration-200 resize-none"
+                          className="w-full px-5 py-4 bg-bg-primary border-2 border-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:shadow-lg transition-all duration-200 resize-none"
                           placeholder="Opisz swoje cele, grupę docelową i wymagania..."
                         />
                       </div>
@@ -451,7 +455,7 @@ const Contact = () => {
                     <div key="step3" className="space-y-8 animate-slideIn">
                       <div className="grid sm:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm text-gray-400 mb-3 font-semibold uppercase tracking-wide">
+                          <label className="block text-sm text-text-secondary mb-3 tracking-wide font-medium">
                             Imię i nazwisko *
                           </label>
                           <input
@@ -460,14 +464,14 @@ const Contact = () => {
                             onChange={(e) =>
                               setFormData({ ...formData, name: e.target.value })
                             }
-                            className="w-full px-0 py-3 bg-transparent border-b-2 border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-all duration-200"
+                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-all duration-200"
                             placeholder="Jan Kowalski"
                             required
                           />
                         </div>
 
                         <div>
-                          <label className="block text-sm text-gray-400 mb-3 font-semibold uppercase tracking-wide">
+                          <label className="block text-sm text-text-secondary mb-3 tracking-wide font-medium">
                             Email *
                           </label>
                           <input
@@ -479,7 +483,7 @@ const Contact = () => {
                                 email: e.target.value,
                               })
                             }
-                            className="w-full px-0 py-3 bg-transparent border-b-2 border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-all duration-200"
+                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-all duration-200"
                             placeholder="jan@firma.pl"
                             required
                           />
@@ -488,7 +492,7 @@ const Contact = () => {
 
                       <div className="grid sm:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm text-gray-400 mb-3 font-semibold uppercase tracking-wide">
+                          <label className="block text-sm text-text-secondary mb-3 tracking-wide font-medium">
                             Firma
                           </label>
                           <input
@@ -500,13 +504,13 @@ const Contact = () => {
                                 company: e.target.value,
                               })
                             }
-                            className="w-full px-0 py-3 bg-transparent border-b-2 border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-all duration-200"
+                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-all duration-200"
                             placeholder="Nazwa firmy"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-sm text-gray-400 mb-3 font-semibold uppercase tracking-wide">
+                          <label className="block text-sm text-text-secondary mb-3 tracking-wide font-medium">
                             Telefon
                           </label>
                           <input
@@ -518,23 +522,23 @@ const Contact = () => {
                                 phone: e.target.value,
                               })
                             }
-                            className="w-full px-0 py-3 bg-transparent border-b-2 border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-all duration-200"
+                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-all duration-200"
                             placeholder="+48 123 456 789"
                           />
                         </div>
                       </div>
 
                       {/* Summary */}
-                      <div className="mt-10 p-6 border border-accent/30 bg-accent/5">
-                        <p className="text-white mb-4 font-bold text-sm uppercase tracking-wide">
+                      <div className="mt-10 p-6 rounded-xl border-2 border-accent/30 bg-accent/5">
+                        <p className="text-text-secondary mb-4 font-bold text-sm uppercase tracking-wide">
                           Podsumowanie
                         </p>
                         <div className="grid sm:grid-cols-2 gap-4 text-sm">
                           <div>
-                            <span className="text-gray-400 font-medium">
+                            <span className="text-text-secondary font-bold">
                               Typ:
                             </span>
-                            <p className="text-white font-semibold mt-1">
+                            <p className="text-text-muted mt-1 font-medium">
                               {
                                 projectTypes.find(
                                   (t) => t.id === formData.projectType
@@ -543,10 +547,10 @@ const Contact = () => {
                             </p>
                           </div>
                           <div>
-                            <span className="text-gray-400 font-medium">
+                            <span className="text-text-secondary font-bold">
                               Budżet:
                             </span>
-                            <p className="text-white font-semibold mt-1">
+                            <p className="text-text-muted mt-1 font-medium">
                               {
                                 budgetRanges.find(
                                   (b) => b.id === formData.budget
@@ -555,10 +559,10 @@ const Contact = () => {
                             </p>
                           </div>
                           <div>
-                            <span className="text-gray-400 font-medium">
+                            <span className="text-text-secondary font-bold">
                               Timeline:
                             </span>
-                            <p className="text-white font-semibold mt-1">
+                            <p className="text-text-muted mt-1 font-medium">
                               {
                                 timelines.find(
                                   (t) => t.id === formData.timeline
@@ -567,10 +571,10 @@ const Contact = () => {
                             </p>
                           </div>
                           <div>
-                            <span className="text-gray-400 font-medium">
+                            <span className="text-text-secondary font-bold">
                               Usługi:
                             </span>
-                            <p className="text-white font-semibold mt-1">
+                            <p className="text-text-muted mt-1 font-medium">
                               {formData.services.length} wybranych
                             </p>
                           </div>
@@ -580,15 +584,19 @@ const Contact = () => {
                   )}
 
                   {/* Navigation */}
-                  <div className="flex justify-between items-center mt-10 pt-8 border-t border-white/10">
+                  <div className="flex justify-between items-center mt-10 pt-8 border-t border-border">
                     <button
                       type="button"
-                      onClick={prevStep}
-                      className={`text-sm text-gray-400 hover:text-white transition-colors duration-200 font-semibold ${
-                        formStep === 1 ? "invisible" : ""
+                      onClick={nextStep}
+                      disabled={!isStepValid()}
+                      className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform ${
+                        isStepValid()
+                          ? "bg-accent text-bg-primary hover:bg-accent/90 hover:scale-105 shadow-lg"
+                          : "bg-gray-100 text-gray-400 cursor-not-allowed"
                       }`}
                     >
-                      ← Wstecz
+                      <ArrowLongLeftIcon className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+                      Wstecz
                     </button>
 
                     {formStep < 3 ? (
@@ -596,10 +604,10 @@ const Contact = () => {
                         type="button"
                         onClick={nextStep}
                         disabled={!isStepValid()}
-                        className={`group flex items-center gap-2 px-8 py-3 border font-semibold transition-all duration-200 transform ${
+                        className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform ${
                           isStepValid()
-                            ? "border-accent text-accent hover:bg-accent hover:text-black hover:scale-105"
-                            : "border-white/10 text-gray-600 cursor-not-allowed"
+                            ? "bg-accent text-text-secondary hover:bg-accent/90 hover:scale-105 shadow-lg"
+                            : "bg-gray-100 text-gray-400 cursor-not-allowed"
                         }`}
                       >
                         Dalej
@@ -609,15 +617,15 @@ const Contact = () => {
                       <button
                         type="submit"
                         disabled={!isStepValid() || isSubmitting}
-                        className={`group flex items-center gap-2 px-8 py-3 border font-semibold transition-all duration-200 transform ${
+                        className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform ${
                           isStepValid() && !isSubmitting
-                            ? "border-accent text-accent hover:bg-accent hover:text-black hover:scale-105"
-                            : "border-white/10 text-gray-600 cursor-not-allowed"
+                            ? "bg-accent text-text-secondary hover:bg-accent/90 hover:scale-105 shadow-lg"
+                            : "bg-gray-100 text-gray-400 cursor-not-allowed"
                         }`}
                       >
                         {isSubmitting ? (
                           <>
-                            <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-accent rounded-full animate-spin" />
+                            <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                             Wysyłanie...
                           </>
                         ) : (
@@ -633,19 +641,19 @@ const Contact = () => {
               ) : (
                 /* Success */
                 <div className="text-center py-20 animate-slideIn">
-                  <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center mx-auto mb-6 animate-scaleIn">
+                  <div className="w-16 h-16 rounded-full bg-accent/10 border-2 border-accent flex items-center justify-center mx-auto mb-6 animate-scaleIn">
                     <CheckIcon
                       className="w-8 h-8 text-accent"
                       strokeWidth={2}
                     />
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-3">
+                  <h3 className="text-3xl font-bold text-text-primary mb-3">
                     Dziękujemy!
                   </h3>
-                  <p className="text-gray-400 mb-2">
+                  <p className="text-text-secondary mb-2">
                     Otrzymaliśmy Twoje zapytanie
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-text-muted">
                     Skontaktujemy się w ciągu 12 godzin
                   </p>
                 </div>

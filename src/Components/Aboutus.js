@@ -141,18 +141,8 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative bg-black py-28 md:py-32 overflow-hidden"
+      className="relative bg-bg-primary py-28 md:py-32 overflow-hidden"
     >
-      {/* Subtelne tło w stylu Projects */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.05]"
-        style={{
-          background:
-            "radial-gradient(800px 400px at 50% 0%, rgba(0,223,154,0.2), transparent 60%)",
-        }}
-      />
-
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
         <header
@@ -164,11 +154,11 @@ const About = () => {
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
         >
-          <h2 className="text-5xl md:text-6xl font-semibold text-white mb-6 tracking-tight ">
+          <h2 className="text-5xl md:text-6xl text-text-primary mb-6 tracking-tight ">
             {t("about.title")}
-            <span className="text-accent">.</span>
+            <span className="text-accent"> Blacksmith Stone.</span>
           </h2>
-          <p className="text-white text-lg font-light max-w-2xl">
+          <p className="text-text-secondary text-lg font-light max-w-2xl">
             {t("about.subtitle")}
           </p>
         </header>
@@ -192,7 +182,7 @@ const About = () => {
                 transitionDelay: visible.has("stats") ? `${i * 60}ms` : "0ms",
               }}
             >
-              <div className="text-4xl md:text-5xl font-light text-white">
+              <div className="text-4xl md:text-5xl font-light text-text-primary">
                 {visible.has("stats") ? (
                   <CountUp end={s.number} suffix={s.suffix} duration={1.4} />
                 ) : (
@@ -240,7 +230,7 @@ const About = () => {
                   onClick={() => setActiveTab(key)}
                   className={`pb-4 text-sm font-light relative focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-sm ${
                     selected
-                      ? "text-white"
+                      ? "text-text-primary"
                       : "text-gray-500 hover:text-gray-300"
                   }`}
                 >
@@ -261,10 +251,10 @@ const About = () => {
             aria-labelledby={`tab-${activeTab}`}
             className="mt-10 bg-white/5 border border-white/10 rounded-2xl p-8 animate-[fade-slide_300ms_ease-out]"
           >
-            <h3 className="text-2xl font-light text-white mb-4">
+            <h3 className="text-2xl font-light text-text-primary mb-4">
               {tabs[activeTab].title}
             </h3>
-            <p className="text-gray-400 font-light leading-relaxed">
+            <p className="text-text-muted font-light leading-relaxed">
               {tabs[activeTab].content}
             </p>
           </div>
@@ -282,7 +272,10 @@ const About = () => {
           }`}
         >
           <div className="flex items-center justify-between mb-6">
-            <h3 id="values-heading" className="text-3xl font-light text-white">
+            <h3
+              id="values-heading"
+              className="text-3xl font-weight text-text-primary"
+            >
               {t("about.values.title") || "Wartości"}
             </h3>
             <span className="text-xs text-accent/70 tracking-widest uppercase">
@@ -301,10 +294,10 @@ const About = () => {
                     : "0ms",
                 }}
               >
-                <h4 className="text-lg text-white font-light mb-2 group-hover:text-accent transition-colors">
+                <h4 className="text-lg text-text-primary font-bold mb-2 group-hover:text-accent transition-colors">
                   {v.title}
                 </h4>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-text-muted text-sm leading-relaxed">
                   {v.description}
                 </p>
               </article>
@@ -325,7 +318,7 @@ const About = () => {
         >
           <h3
             id="process-heading"
-            className="text-3xl font-light text-white mb-10"
+            className="text-3xl font-light text-text-primary mb-10"
           >
             {t("about.process.title")}
           </h3>
@@ -347,10 +340,10 @@ const About = () => {
                     {p.step}
                   </span>
                 </div>
-                <h4 className="text-white font-light text-lg mb-2">
+                <h4 className="text-text-primary font-light text-lg mb-2">
                   {p.title}
                 </h4>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-text-muted text-sm leading-relaxed">
                   {p.desc}
                 </p>
               </div>
@@ -371,7 +364,7 @@ const About = () => {
         >
           <h3
             id="tech-heading"
-            className="text-3xl font-light text-white mb-8 text-center"
+            className="text-3xl font-light text-text-primary mb-8 text-center"
           >
             {t("about.tech")}
           </h3>
@@ -400,12 +393,12 @@ const About = () => {
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
         >
-          <p className="text-2xl md:text-3xl font-light text-white mb-8">
+          <p className="text-2xl md:text-3xl font-light text-text-primary mb-8">
             Gotowy na współpracę?
           </p>
           <a
             href="#contact"
-            className="group inline-flex items-center justify-center px-8 py-4 border border-white text-white hover:bg-white hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+            className="group inline-flex items-center justify-center px-8 py-4 border border-white text-text-primary hover:bg-white hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
           >
             Rozpocznij projekt
             <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
