@@ -368,10 +368,7 @@ const About = () => {
             {techStack.map((tech, i) => (
               <span
                 key={tech}
-                className="px-5 py-2.5 rounded-full border border-card-border text-gray-300 text-sm bg-white/5 hover:border-accent hover:text-white transition-colors"
-                style={{
-                  transitionDelay: visible.has("tech") ? `${i * 25}ms` : "0ms",
-                }}
+                className="px-5 py-2.5 rounded-full border border-card-border text-gray-600 text-sm bg-white/5 hover:border-accent hover:text-accent transition-colors"
               >
                 {tech}
               </span>
@@ -392,31 +389,8 @@ const About = () => {
           <p className="text-2xl md:text-3xl font-light text-text-primary mb-8">
             Gotowy na współpracę?
           </p>
-          <a
-            href="#contact"
-            className="group inline-flex items-center justify-center px-8 py-4 border border-card-border text-text-primary hover:bg-white hover:text-black transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-          >
-            Rozpocznij projekt
-            <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </a>
         </section>
       </div>
-
-      {/* Keyframes dla fade-slide panelu */}
-      <style jsx>{`
-        @keyframes fade-slide {
-          from {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 };

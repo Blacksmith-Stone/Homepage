@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import "..\\src\\Components\\ComponentsCSS\\navbar_animation.css";
-import LanguageSwitcher from "./LanguageSwitcher";
+import "./ComponentsCSS/navbar_animation.css";
+import LanguageSwitcher from "./Translations/LanguageSwitcher";
 import { useLanguage } from "./Translations/LanguageContext";
-import ThemeSwitcher from "./ThemeSwitcher";
+import ThemeSwitcher from "./Theme/ThemeSwitcher";
 
 export default function Navbar() {
   const { t } = useLanguage();

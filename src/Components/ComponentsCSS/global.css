@@ -27,5 +27,5 @@
   --color-accent: 0 223 154;
   --color-card-bg: 17 24 39; /* gray-900 */
   --color-card-bg-hover: 31 41 55; /* gray-800 */
-  --color-card-border: 55 65 81; /* gray-700 */
+  --color-card-border: 0 0 0; /* gray-700 */
 }

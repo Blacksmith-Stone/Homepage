@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useLanguage } from "./Translations/LanguageContext";
-import { GlobeAltIcon } from "@heroicons/react/24/outline";
+import { useLanguage } from "./LanguageContext";
 
 const LanguageSwitcher = () => {
   const { language, changeLanguage } = useLanguage();
