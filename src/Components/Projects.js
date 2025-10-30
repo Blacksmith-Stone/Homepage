@@ -346,7 +346,7 @@ const Projects = () => {
         </div>
 
         {/* Simple Filter */}
-        <div className="flex gap-8 mb-16 border-b border-white/10">
+        <div className="flex gap-8 mb-16">
           {categories.map((cat) => (
             <button
               key={cat.id}

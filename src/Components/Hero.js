@@ -7,6 +7,7 @@ import {
 import "./ComponentsCSS/hero_animation.css";
 import ParticleBackground from "./ParticleBackground";
 import { useLanguage } from "./Translations/LanguageContext";
+import Typewriter from "typewriter-effect";
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -16,28 +17,7 @@ const Hero = () => {
     setIsLoaded(true);
   }, []);
 
-  // Typing effect for tagline
-  const [displayedText, setDisplayedText] = useState("");
-  const fullText = t("hero.subtitle");
-
-  useEffect(() => {
-    if (isLoaded && fullText) {
-      setDisplayedText("");
-
-      let index = 0;
-      const timer = setInterval(() => {
-        if (index <= fullText.length) {
-          setDisplayedText(fullText.slice(0, index));
-          index++;
-        } else {
-          clearInterval(timer);
-        }
-      }, 50);
-
-      return () => clearInterval(timer);
-    }
-  }, [isLoaded, fullText, language]);
-
+  // Skrolowanie
   const scrollToSection = (sectionId) => {
     const element = document.querySelector(sectionId);
     if (element) {
@@ -101,16 +81,26 @@ const Hero = () => {
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
-          {displayedText}
-          <span className="animate-pulse text-accent">|</span>
+          <Typewriter
+            options={{
+              strings: t("hero.subtitle"),
+              autoStart: true,
+              loop: false,
+              delay: 40,
+            }}
+          />
         </p>
 
-        <p
-          className={`text-base sm:text-lg text-text-muted mb-12 ${
-            isLoaded ? "animate-fade-in-up animation-delay-500" : "opacity-0"
-          }`}
-        >
-          {t("hero.description")}
+        <p className="text-base sm:text-lg text-text-muted mb-12">
+          <Typewriter
+            options={{
+              strings: t("hero.description"),
+              autoStart: true,
+              loop: false,
+              delay: 50,
+              cursor: "",
+            }}
+          />
         </p>
 
         {/* CTA Buttons */}

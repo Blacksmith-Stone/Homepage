@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FaFacebookF,
   FaTwitter,
@@ -8,11 +8,9 @@ import {
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
-  FaArrowRight,
 } from "react-icons/fa";
 import {
   CodeBracketIcon,
-  ServerIcon,
   DevicePhoneMobileIcon,
   PaintBrushIcon,
 } from "@heroicons/react/24/outline";
