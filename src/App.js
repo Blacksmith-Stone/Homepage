@@ -7,10 +7,13 @@ import About from "./Components/Aboutus";
 import Contact from "./Components/Contact";
 import { LanguageProvider } from "./Components/Translations/LanguageContext";
 import "./Components/ComponentsCSS/global.css";
+// import ParticleBackground from "./Components/ParticleBackground";
 
 function App() {
   return (
     <LanguageProvider>
+      {/* <div className="relative min-h-screen bg-bg-primary text-text-primary"> */}
+      {/* <ParticleBackground /> */}
       <div className="App">
         <Navbar />
         <Hero />
@@ -19,6 +22,7 @@ function App() {
         <Contact />
         <Footer />
       </div>
+      {/* </div> */}
     </LanguageProvider>
   );
 }

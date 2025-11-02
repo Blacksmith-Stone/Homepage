@@ -4,10 +4,10 @@ import {
   SparklesIcon,
   CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
-import "./ComponentsCSS/hero_animation.css";
-import ParticleBackground from "./ParticleBackground";
 import { useLanguage } from "./Translations/LanguageContext";
 import Typewriter from "typewriter-effect";
+import "./ComponentsCSS/hero_animation.css";
+import Particles from "./Particles";
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -17,7 +17,6 @@ const Hero = () => {
     setIsLoaded(true);
   }, []);
 
-  // Skrolowanie
   const scrollToSection = (sectionId) => {
     const element = document.querySelector(sectionId);
     if (element) {
@@ -25,18 +24,22 @@ const Hero = () => {
     }
   };
 
-  // Generowanie cząsteczek
-  const particles = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 3 + 1,
-    left: Math.random() * 100,
-    delay: Math.random() * 5,
-    speed: Math.random() > 0.5 ? "fast" : "slow",
-  }));
-
   return (
     <section className="relative bg-bg-primary text-text-primary min-h-screen flex items-center justify-center overflow-hidden">
-      <ParticleBackground particles={particles} />
+      {/* RippleGrid Background
+      <div className="absolute inset-0 z-0">
+        <Particles
+          particleColors={["#006633", "#006633"]}
+          particleCount={500}
+          particleSpread={5}
+          speed={0.3}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div> */}
+
       {/* Main Content */}
       <div className="relative z-10 max-w-5xl text-center px-6">
         {/* Tech Icons */}

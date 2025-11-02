@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
+import "./ComponentsCSS/particleBackground.css";
 
-const ParticleBackground = ({ particles }) => {
+const ParticleBackground = () => {
+  const particles = useMemo(() => {
+    return Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      size: Math.random() * 3 + 1,
+      left: Math.random() * 100,
+      delay: Math.random() * 5,
+      speed: Math.random() > 0.5 ? "fast" : "slow",
+    }));
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden">
       {particles.map((particle) => (
@@ -16,7 +27,8 @@ const ParticleBackground = ({ particles }) => {
             width: `${particle.size}px`,
             height: `${particle.size}px`,
             left: `${particle.left}%`,
-            bottom: "-10px",
+            // ZMIANA: Ustawiamy start na dokładnej dolnej krawędzi ekranu
+            bottom: "0",
             backgroundColor: "rgb(0, 223, 154)",
             borderRadius: "50%",
             opacity: 0.4,
@@ -28,4 +40,5 @@ const ParticleBackground = ({ particles }) => {
     </div>
   );
 };
+
 export default ParticleBackground;

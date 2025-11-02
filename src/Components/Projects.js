@@ -316,7 +316,7 @@ const Projects = () => {
                 rel="noopener noreferrer"
                 className="flex-1 py-3 px-6 bg-accent text-black font-medium rounded-lg hover:bg-accent/90 transition-colors flex items-center justify-center gap-2"
               >
-                Zobacz na żywo
+                Zobacz
                 <ArrowUpRightIcon className="w-4 h-4" />
               </a>
               <button

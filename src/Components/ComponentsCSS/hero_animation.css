@@ -1,3 +1,5 @@
+/* --- ANIMACJE (KEYFRAMES) --- */
+
 /* Gradient Animation */
 @keyframes gradient {
   0% {
@@ -11,42 +13,6 @@
   }
 }
 
-/* Simple upward float */
-@keyframes floatUp {
-  0% {
-    transform: translateY(100vh) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) translateX(0);
-    opacity: 0;
-  }
-}
-
-/* Slower upward float variant */
-@keyframes floatUpSlow {
-  0% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-  5% {
-    opacity: 0.8;
-  }
-  95% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
-}
-
 /* Scroll Indicator */
 @keyframes scrollIndicator {
   0%,
@@ -56,17 +22,6 @@
   }
   50% {
     transform: translateY(8px);
-    opacity: 0.5;
-  }
-}
-
-/* Pulse animation */
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
     opacity: 0.5;
   }
 }
@@ -94,26 +49,15 @@
   }
 }
 
-/* Utility classes */
+/* --- KLASY UŻYTKOWE (UTILITY CLASSES) --- */
+
 .animate-gradient {
   animation: gradient 3s ease infinite;
   background-size: 300% 300%;
 }
 
-.animate-float-up {
-  animation: floatUp 15s linear infinite;
-}
-
-.animate-float-up-slow {
-  animation: floatUpSlow 20s linear infinite;
-}
-
 .animate-scroll-indicator {
   animation: scrollIndicator 2s ease-in-out infinite;
-}
-
-.animate-pulse {
-  animation: pulse 2s ease-in-out infinite;
 }
 
 .animate-fade-in-up {
@@ -124,7 +68,7 @@
   animation: fadeInDown 0.8s ease-out forwards;
 }
 
-/* Animation delays */
+/* --- OPÓŹNIENIA ANIMACJI --- */
 .animation-delay-100 {
   animation-delay: 0.1s;
 }
@@ -133,13 +77,4 @@
 }
 .animation-delay-300 {
   animation-delay: 0.3s;
-}
-.animation-delay-500 {
-  animation-delay: 0.5s;
-}
-.animation-delay-700 {
-  animation-delay: 0.7s;
-}
-.animation-delay-1000 {
-  animation-delay: 1s;
 }
