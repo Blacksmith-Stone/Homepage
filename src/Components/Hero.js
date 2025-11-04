@@ -7,6 +7,7 @@ import {
 import { useLanguage } from "./Translations/LanguageContext";
 import Typewriter from "typewriter-effect";
 import "./ComponentsCSS/hero_animation.css";
+import { scrollToSection } from "./utils/ScrollUtils";
 import Particles from "./Particles";
 
 const Hero = () => {
@@ -17,28 +18,20 @@ const Hero = () => {
     setIsLoaded(true);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.querySelector(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section className="relative bg-bg-primary text-text-primary min-h-screen flex items-center justify-center overflow-hidden">
-      {/* RippleGrid Background
+      {/* RippleGrid Background */}
       <div className="absolute inset-0 z-0">
         <Particles
-          particleColors={["#006633", "#006633"]}
-          particleCount={500}
-          particleSpread={5}
-          speed={0.3}
+          particleColors={["#ffffff", "#ffffff"]}
+          particleCount={200}
+          particleSpread={20}
+          speed={0.1}
           particleBaseSize={100}
-          moveParticlesOnHover={true}
           alphaParticles={false}
           disableRotation={false}
         />
-      </div> */}
+      </div>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-5xl text-center px-6">
@@ -68,11 +61,7 @@ const Hero = () => {
         </div>
 
         {/* Main Heading */}
-        <h1
-          className={`text-5xl sm:text-7xl md:text-8xl font-black mb-8 ${
-            isLoaded ? "animate-fade-in-up" : "opacity-0"
-          }`}
-        >
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8">
           <span className="bg-gradient-to-r from-text-primary via-accent to-text-primary bg-clip-text text-transparent animate-gradient">
             Blacksmith Stone
           </span>

@@ -14,6 +14,7 @@ import {
   DevicePhoneMobileIcon,
   PaintBrushIcon,
 } from "@heroicons/react/24/outline";
+import { scrollToSection } from "./utils/ScrollUtils";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -33,7 +34,7 @@ const Footer = () => {
   const quickLinks = [
     { name: "About Us", href: "#about" },
     { name: "Portfolio", href: "#projects" },
-    { name: "Services", href: "#services" },
+    { name: "Services", href: "#contact" },
   ];
 
   const services = [
@@ -95,17 +96,22 @@ const Footer = () => {
                   Quick Links
                 </h3>
                 <ul className="space-y-3">
-                  {quickLinks.map((link, idx) => (
-                    <li key={idx}>
+                  {quickLinks.map((item) => (
+                    <li>
                       <a
-                        href={link.href}
+                        key={item.name}
+                        href={item.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection(item.href);
+                        }}
                         className="text-gray-400 hover:text-accent transition-colors duration-200 text-sm flex items-center gap-2 group"
                       >
                         <span className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">
                           →
                         </span>
                         <span className="group-hover:translate-x-1 transition-transform">
-                          {link.name}
+                          {item.name}
                         </span>
                       </a>
                     </li>

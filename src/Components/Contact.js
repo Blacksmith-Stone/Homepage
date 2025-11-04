@@ -9,13 +9,19 @@ import {
   ClockIcon,
 } from "@heroicons/react/24/outline";
 import { FaLinkedin, FaTwitter, FaGithub, FaWhatsapp } from "react-icons/fa";
+import "./ComponentsCSS/contact_animation.css";
+import useScrollReveal from "./utils/useScrollReveal";
 
 const Contact = () => {
   const [formStep, setFormStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+
+  const { setItemRef, isVisible } = useScrollReveal({
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+    unobserveOnShow: true,
+  });
 
   const [formData, setFormData] = useState({
     projectType: "",
@@ -72,30 +78,6 @@ const Contact = () => {
     { id: "flexible", label: "Flexible" },
   ];
 
-  // Intersection Observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   const handleServiceToggle = (service) => {
     setFormData((prev) => ({
       ...prev,
@@ -151,16 +133,16 @@ const Contact = () => {
   };
 
   return (
-    <section
-      id="contact"
-      ref={sectionRef}
-      className="bg-bg-primary py-32 overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="contact" className="bg-bg-primary py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6" data-id="contact-header">
         {/* Header */}
         <div
-          className={`mb-20 transition-all duration-500 ease-out ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          ref={setItemRef(0)}
+          data-id="contact-header"
+          className={`mb-20 transition-all duration-700 ease-out delay-150 ${
+            isVisible("contact-header")
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
           }`}
         >
           <h2 className="text-5xl md:text-6xl text-text-primary mb-6 tracking-tight font-light">
@@ -175,10 +157,12 @@ const Contact = () => {
         <div className="grid lg:grid-cols-3 gap-16">
           {/* Contact Info */}
           <div
-            className={`lg:col-span-1 transition-all duration-500 ease-out delay-75 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
+            ref={setItemRef(1)}
+            data-id="contact-info"
+            className={`lg:col-span-1 transition-all duration-700 ease-out delay-150 ${
+              isVisible("contact-info")
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-8"
             }`}
           >
             <div className="space-y-8 sticky top-24">
@@ -276,11 +260,14 @@ const Contact = () => {
 
           {/* Form Container */}
           <div
-            className={`lg:col-span-2 transition-all duration-500 ease-out delay-150 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
+            ref={setItemRef(11)}
+            data-id="contact-form"
+            className={`lg:col-span-2 transition-all duration-700 ease-out delay-150 ${
+              isVisible("contact-form")
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-8"
             }`}
+            style={{ transitionDelay: "200ms" }}
           >
             <div className="bg-bg-primary shadow-xl rounded-2xl border border-border p-8 md:p-10">
               {/* Progress */}
@@ -663,41 +650,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-
-      {/* Optimized Animations */}
-      <style jsx>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translate3d(0, 10px, 0);
-          }
-          to {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-          }
-        }
-
-        @keyframes scaleIn {
-          0% {
-            transform: scale(0);
-          }
-          50% {
-            transform: scale(1.1);
-          }
-          100% {
-            transform: scale(1);
-          }
-        }
-
-        .animate-slideIn {
-          animation: slideIn 0.3s ease-out forwards;
-          will-change: transform, opacity;
-        }
-
-        .animate-scaleIn {
-          animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-      `}</style>
     </section>
   );
 };

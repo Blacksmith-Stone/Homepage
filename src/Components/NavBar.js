@@ -4,6 +4,7 @@ import "./ComponentsCSS/navbar_animation.css";
 import LanguageSwitcher from "./Translations/LanguageSwitcher";
 import { useLanguage } from "./Translations/LanguageContext";
 import ThemeSwitcher from "./Theme/ThemeSwitcher";
+import { scrollToSection } from "./utils/ScrollUtils";
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -75,22 +76,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navigation]);
 
-  // Smooth scroll do sekcji
-  const handleNavClick = (e, href) => {
-    e.preventDefault();
-    setMenuOpen(false);
-
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        const offsetTop = element.offsetTop - 70;
-        window.scrollTo({ top: offsetTop, behavior: "smooth" });
-      }
-    }
-  };
-
   // Zamknij menu przy zmianie rozmiaru okna
   useEffect(() => {
     const handleResize = () => {
@@ -118,8 +103,12 @@ export default function Navbar() {
             <div className="flex-shrink-0">
               <a
                 href="#"
-                onClick={(e) => handleNavClick(e, "#")}
-                className="text-2xl font-bold text-accent hover:text-accent-hover transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMenuOpen(false);
+                  scrollToSection("#");
+                }}
+                className="text-2xl font-bold text-accent transition-colors"
               >
                 BSS.
               </a>
@@ -131,7 +120,11 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMenuOpen(false);
+                    scrollToSection(item.href);
+                  }}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     activeSection === item.href
                       ? "text-accent bg-accent/10 shadow-sm"
@@ -202,7 +195,11 @@ export default function Navbar() {
             <a
               key={item.name}
               href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
+              onClick={(e) => {
+                e.preventDefault();
+                setMenuOpen(false);
+                scrollToSection(item.href);
+              }}
               className={`text-2xl font-semibold transition-all duration-200 transform hover:scale-110 ${
                 activeSection === item.href
                   ? "text-accent"

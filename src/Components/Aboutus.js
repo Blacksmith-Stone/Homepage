@@ -1,30 +1,17 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import CountUp from "react-countup";
 import { useLanguage } from "./Translations/LanguageContext";
+import useScrollReveal from "./utils/useScrollReveal";
 
 const About = () => {
   const { t } = useLanguage();
-  const [visible, setVisible] = useState(new Set());
-  const refs = useRef({});
   const [activeTab, setActiveTab] = useState("mission");
 
-  // Observer: pokazuje sekcje raz, z lekkim offsetem
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.dataset.id;
-            if (id) setVisible((prev) => new Set(prev).add(id));
-          }
-        }),
-      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
-    );
-
-    Object.values(refs.current).forEach((el) => el && observer.observe(el));
-    return () =>
-      Object.values(refs.current).forEach((el) => el && observer.unobserve(el));
-  }, []);
+  const { setItemRef, isVisible } = useScrollReveal({
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+    unobserveOnShow: true,
+  });
 
   const stats = useMemo(
     () => [
@@ -115,24 +102,6 @@ const About = () => {
 
   // Tabs: dostępność + obsługa klawiatury
   const tabKeys = Object.keys(tabs);
-  const onTabKeyDown = (e) => {
-    const currentIndex = tabKeys.indexOf(activeTab);
-    if (e.key === "ArrowRight") {
-      e.preventDefault();
-      setActiveTab(tabKeys[(currentIndex + 1) % tabKeys.length]);
-    } else if (e.key === "ArrowLeft") {
-      e.preventDefault();
-      setActiveTab(
-        tabKeys[(currentIndex - 1 + tabKeys.length) % tabKeys.length]
-      );
-    } else if (e.key === "Home") {
-      e.preventDefault();
-      setActiveTab(tabKeys[0]);
-    } else if (e.key === "End") {
-      e.preventDefault();
-      setActiveTab(tabKeys[tabKeys.length - 1]);
-    }
-  };
 
   return (
     <section
@@ -142,10 +111,10 @@ const About = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
         <header
-          ref={(el) => (refs.current.hdr = el)}
+          ref={setItemRef(0)}
           data-id="hdr"
-          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
-            visible.has("hdr")
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 delay-150 ${
+            isVisible("hdr")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
@@ -162,10 +131,10 @@ const About = () => {
         {/* Stats */}
         <section
           aria-label={t("about.stats.title") || "Stats"}
-          ref={(el) => (refs.current.stats = el)}
+          ref={setItemRef(1)}
           data-id="stats"
-          className={`grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16 motion-safe:transition-all motion-safe:duration-700 ${
-            visible.has("stats")
+          className={`grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16 motion-safe:transition-all motion-safe:duration-700 delay-150 ${
+            isVisible("stats")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
@@ -175,11 +144,11 @@ const About = () => {
               key={i}
               className="group border border-card-border rounded-2xl p-6 bg-white/5 hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
               style={{
-                transitionDelay: visible.has("stats") ? `${i * 60}ms` : "0ms",
+                transitionDelay: isVisible("stats") ? `${i * 60}ms` : "0ms",
               }}
             >
               <div className="text-4xl md:text-5xl font-light text-text-primary">
-                {visible.has("stats") ? (
+                {isVisible("stats") ? (
                   <CountUp end={s.number} suffix={s.suffix} duration={1.4} />
                 ) : (
                   <span aria-hidden="true">0{s.suffix}</span>
@@ -199,10 +168,10 @@ const About = () => {
         {/* Tabs + Content */}
         <section
           aria-label={t("about.tabs.title") || "About sections"}
-          ref={(el) => (refs.current.tabs = el)}
+          ref={setItemRef(2)}
           data-id="tabs"
-          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
-            visible.has("tabs")
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 delay-150 ${
+            isVisible("tabs")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
@@ -211,7 +180,6 @@ const About = () => {
             role="tablist"
             aria-label={t("about.tabs.title") || "Tabs"}
             className="flex gap-8 border-b border-white/10"
-            onKeyDown={onTabKeyDown}
           >
             {tabKeys.map((key) => {
               const selected = activeTab === key;
@@ -259,10 +227,10 @@ const About = () => {
         {/* Values */}
         <section
           aria-labelledby="values-heading"
-          ref={(el) => (refs.current.values = el)}
+          ref={setItemRef(3)}
           data-id="values"
-          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
-            visible.has("values")
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 delay-150 ${
+            isVisible("values")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
@@ -285,9 +253,7 @@ const About = () => {
                 key={i}
                 className="group bg-white/5 border border-card-border rounded-2xl p-6 hover:border-accent/60 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
                 style={{
-                  transitionDelay: visible.has("values")
-                    ? `${i * 60}ms`
-                    : "0ms",
+                  transitionDelay: isVisible("values") ? `${i * 60}ms` : "0ms",
                 }}
               >
                 <h4 className="text-lg text-text-primary mb-2 group-hover:text-accent transition-colors">
@@ -304,10 +270,10 @@ const About = () => {
         {/* Process */}
         <section
           aria-labelledby="process-heading"
-          ref={(el) => (refs.current.process = el)}
+          ref={setItemRef(4)}
           data-id="process"
-          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
-            visible.has("process")
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 delay-150 ${
+            isVisible("process")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
@@ -325,9 +291,7 @@ const About = () => {
                 key={i}
                 className="relative bg-white/5 border border-card-border rounded-2xl p-6 overflow-hidden group hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors"
                 style={{
-                  transitionDelay: visible.has("process")
-                    ? `${i * 60}ms`
-                    : "0ms",
+                  transitionDelay: isVisible("process") ? `${i * 60}ms` : "0ms",
                 }}
               >
                 <div className="absolute -top-12 -right-10 w-32 h-32 rounded-full bg-accent/10 blur-3xl" />
@@ -350,10 +314,10 @@ const About = () => {
         {/* Tech Stack */}
         <section
           aria-labelledby="tech-heading"
-          ref={(el) => (refs.current.tech = el)}
+          ref={setItemRef(5)}
           data-id="tech"
-          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 ${
-            visible.has("tech")
+          className={`mb-16 motion-safe:transition-all motion-safe:duration-700 delay-150 ${
+            isVisible("tech")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
@@ -378,10 +342,10 @@ const About = () => {
 
         {/* CTA */}
         <section
-          ref={(el) => (refs.current.cta = el)}
+          ref={setItemRef(6)}
           data-id="cta"
-          className={`text-center motion-safe:transition-all motion-safe:duration-700 ${
-            visible.has("cta")
+          className={`text-center motion-safe:transition-all motion-safe:duration-700 delay-150 delay-150 ${
+            isVisible("cta")
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-6 motion-reduce:translate-y-0"
           }`}
