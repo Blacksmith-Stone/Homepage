@@ -269,7 +269,7 @@ const Contact = () => {
             }`}
             style={{ transitionDelay: "200ms" }}
           >
-            <div className="bg-bg-primary shadow-xl rounded-2xl border border-border p-8 md:p-10">
+            <div className="bg-bg-primary shadow-xl rounded-2xl shadow-md shadow-gray-100/10 border-border p-8 md:p-10">
               {/* Progress */}
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-4">
@@ -314,9 +314,9 @@ const Contact = () => {
                                   projectType: type.id,
                                 })
                               }
-                              className={`relative p-5 rounded-xl border-2 text-left transition-all duration-200 ${
+                              className={`relative p-5 rounded-xl shadow-md shadow-gray-100/20 text-left transition-all duration-200 hover:bg-accent/30 ${
                                 formData.projectType === type.id
-                                  ? "border-accent bg-accent/5 shadow-lg"
+                                  ? "border-accent bg-accent/10 shadow-lg "
                                   : "border-border hover:border-accent/50 hover:shadow-md bg-bg-primary"
                               }`}
                             >
@@ -349,9 +349,9 @@ const Contact = () => {
                               key={service}
                               type="button"
                               onClick={() => handleServiceToggle(service)}
-                              className={`px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all duration-200 ${
+                              className={`px-5 py-2.5 rounded-full shadow-md shadow-gray-100/20 text-sm font-medium transition-all duration-200 ${
                                 formData.services.includes(service)
-                                  ? "border-accent text-white bg-accent shadow-md"
+                                  ? "border-accent text-white bg-accent/50 shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
@@ -378,9 +378,9 @@ const Contact = () => {
                               onClick={() =>
                                 setFormData({ ...formData, budget: range.id })
                               }
-                              className={`px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 ${
+                              className={`px-4 py-3 rounded-lg shadow-md shadow-gray-100/20 text-sm font-medium transition-all duration-200 ${
                                 formData.budget === range.id
-                                  ? "border-accent text-white bg-accent shadow-md"
+                                  ? "border-accent text-white bg-accent/40 shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
@@ -405,9 +405,9 @@ const Contact = () => {
                                   timeline: timeline.id,
                                 })
                               }
-                              className={`px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 ${
+                              className={`px-4 py-3 rounded-lg shadow-md shadow-gray-100/20 text-sm font-medium transition-all duration-200 ${
                                 formData.timeline === timeline.id
-                                  ? "border-accent text-white bg-accent shadow-md"
+                                  ? "border-accent text-white bg-accent/40 shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
                               }`}
                             >
@@ -430,7 +430,7 @@ const Contact = () => {
                             })
                           }
                           rows={6}
-                          className="w-full px-5 py-4 bg-bg-primary border-2 border-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:shadow-lg transition-all duration-200 resize-none"
+                          className="w-full px-5 py-4 bg-bg-primary shadow-md shadow-gray-100/20 border-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:shadow-lg transition-all duration-200 resize-none"
                           placeholder="Opisz swoje cele, grupę docelową i wymagania..."
                         />
                       </div>
@@ -579,7 +579,6 @@ const Contact = () => {
                         onClick={prevStep}
                         className="group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold border-2 border-border text-text-primary bg-bg-primary hover:border-accent/50 hover:bg-accent/5 transition-all duration-200"
                       >
-                        <ArrowLongLeftIcon className="w-5 h-5 transition-transform duration-200 group-hover:-translate-x-1" />
                         Wstecz
                       </button>
                     ) : (
@@ -594,7 +593,7 @@ const Contact = () => {
                         disabled={!isStepValid()}
                         className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 ${
                           isStepValid()
-                            ? "bg-accent text-white hover:bg-accent/90 hover:shadow-lg active:scale-95"
+                            ? "bg-accent/50 text-white hover:bg-accent/40 hover:shadow-lg active:scale-95"
                             : "bg-gray-300 text-gray-500 cursor-not-allowed"
                         }`}
                       >
@@ -607,8 +606,8 @@ const Contact = () => {
                         disabled={!isStepValid() || isSubmitting}
                         className={`group flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all duration-200 ${
                           isStepValid() && !isSubmitting
-                            ? "bg-accent text-white hover:bg-accent/90 hover:shadow-lg active:scale-95"
-                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                            ? "bg-accent/40 text-text-primary hover:bg-accent/50 hover:shadow-lg active:scale-95"
+                            : "border-2 border-border text-text-primary cursor-not-allowed"
                         }`}
                       >
                         {isSubmitting ? (

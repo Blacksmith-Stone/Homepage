@@ -142,7 +142,7 @@ const About = () => {
           {stats.map((s, i) => (
             <div
               key={i}
-              className="group border border-card-border rounded-2xl p-6 bg-white/5 hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
+              className="group shadow-md border-card-border rounded-2xl p-6 bg-white/5 hover:border-accent/50 hover:bg-card-bg-hover motion-safe:transition-colors focus-within:border-accent/70"
               style={{
                 transitionDelay: isVisible("stats") ? `${i * 60}ms` : "0ms",
               }}
@@ -207,13 +207,12 @@ const About = () => {
             })}
           </div>
 
-          {/* Panel z delikatnym cross-fade/slide */}
           <div
             key={activeTab}
             id={`panel-${activeTab}`}
             role="tabpanel"
             aria-labelledby={`tab-${activeTab}`}
-            className="mt-10 bg-white/5 border border-card-border rounded-2xl p-8 animate-[fade-slide_300ms_ease-out]"
+            className="mt-10 bg-white/5 shadow-md border-card-border rounded-2xl p-8 animate-[fade-slide_300ms_ease-out]"
           >
             <h3 className="text-2xl font-light text-text-primary mb-4">
               {tabs[activeTab].title}
@@ -251,7 +250,7 @@ const About = () => {
             {values.map((v, i) => (
               <article
                 key={i}
-                className="group bg-white/5 border border-card-border rounded-2xl p-6 hover:border-accent/60 hover:bg-white/10 motion-safe:transition-colors focus-within:border-accent/70"
+                className="group bg-white/5 shadow-md border-card-border rounded-2xl p-6 hover:border-accent/60 hover:hover:bg-card-bg-hover motion-safe:transition-colors focus-within:border-accent/70"
                 style={{
                   transitionDelay: isVisible("values") ? `${i * 60}ms` : "0ms",
                 }}
@@ -289,7 +288,7 @@ const About = () => {
             {process.map((p, i) => (
               <div
                 key={i}
-                className="relative bg-white/5 border border-card-border rounded-2xl p-6 overflow-hidden group hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors"
+                className="relative bg-white/5 shadow-md border-card-border rounded-2xl p-6 overflow-hidden group hover:border-accent/50 hover:bg-white/10 motion-safe:transition-colors"
                 style={{
                   transitionDelay: isVisible("process") ? `${i * 60}ms` : "0ms",
                 }}
