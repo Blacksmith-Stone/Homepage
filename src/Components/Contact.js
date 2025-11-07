@@ -177,14 +177,14 @@ const Contact = () => {
                     className="group block"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted group-hover:border-accent group-hover:text-accent transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center text-text-muted group-hover:border-accent group-hover:text-accent transition-all duration-300">
                         <EnvelopeIcon className="w-5 h-5" />
                       </div>
                       <div>
                         <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                           Email
                         </p>
-                        <p className="text-text-muted group-hover:text-accent transition-colors duration-300">
+                        <p className="text-text-secondary group-hover:text-accent transition-colors duration-300">
                           hello@blacksmithstone.com
                         </p>
                       </div>
@@ -193,14 +193,14 @@ const Contact = () => {
 
                   <a href="tel:+48123456789" className="group block">
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted group-hover:border-accent group-hover:text-accent transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center text-text-muted group-hover:border-accent group-hover:text-accent transition-all duration-300">
                         <PhoneIcon className="w-5 h-5" />
                       </div>
                       <div>
                         <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                           Telefon
                         </p>
-                        <p className="text-text-muted group-hover:text-accent transition-colors duration-300">
+                        <p className="text-text-secondary group-hover:text-accent transition-colors duration-300">
                           +48 123 456 789
                         </p>
                       </div>
@@ -208,26 +208,26 @@ const Contact = () => {
                   </a>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted">
+                    <div className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center text-text-muted">
                       <MapPinIcon className="w-5 h-5" />
                     </div>
                     <div>
                       <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                         Lokalizacja
                       </p>
-                      <p className="text-text-muted">Grudziądz, Poland</p>
+                      <p className="text-text-secondary">Grudziądz, Poland</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4 pt-4 border-t border-border">
-                    <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-accent">
+                    <div className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center text-accent">
                       <ClockIcon className="w-5 h-5" />
                     </div>
                     <div>
                       <p className="text-xs text-text-secondary mb-1 uppercase tracking-wide">
                         Czas odpowiedzi
                       </p>
-                      <p className="text-text-muted">Do 12 godzin</p>
+                      <p className="text-text-secondary">Do 12 godzin</p>
                     </div>
                   </div>
                 </div>
@@ -248,7 +248,7 @@ const Contact = () => {
                     <a
                       key={idx}
                       href={social.href}
-                      className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-muted hover:border-accent hover:text-accent transition-all duration-300 transform hover:scale-110"
+                      className="w-10 h-10 rounded-full border-2 border-border flex items-center justify-center text-text-muted hover:border-accent hover:text-accent transition-all duration-300 transform hover:scale-110"
                     >
                       {social.icon}
                     </a>
@@ -269,7 +269,7 @@ const Contact = () => {
             }`}
             style={{ transitionDelay: "200ms" }}
           >
-            <div className="bg-bg-primary shadow-xl rounded-2xl shadow-md shadow-gray-100/10 border-border p-8 md:p-10">
+            <div className="bg-bg-primary rounded-2xl shadow-md shadow-border border-border p-8 md:p-10">
               {/* Progress */}
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-4">
@@ -314,7 +314,7 @@ const Contact = () => {
                                   projectType: type.id,
                                 })
                               }
-                              className={`relative p-5 rounded-xl shadow-md shadow-gray-100/20 text-left transition-all duration-200 hover:bg-accent/30 ${
+                              className={`relative p-5 rounded-xl shadow-md shadow-border text-left transition-all duration-200 hover:bg-accent/30 ${
                                 formData.projectType === type.id
                                   ? "border-accent bg-accent/10 shadow-lg "
                                   : "border-border hover:border-accent/50 hover:shadow-md bg-bg-primary"
@@ -349,7 +349,7 @@ const Contact = () => {
                               key={service}
                               type="button"
                               onClick={() => handleServiceToggle(service)}
-                              className={`px-5 py-2.5 rounded-full shadow-md shadow-gray-100/20 text-sm font-medium transition-all duration-200 ${
+                              className={`px-5 py-2.5 rounded-full shadow-md shadow-border text-sm font-medium transition-all duration-200 ${
                                 formData.services.includes(service)
                                   ? "border-accent text-white bg-accent/50 shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
@@ -378,7 +378,7 @@ const Contact = () => {
                               onClick={() =>
                                 setFormData({ ...formData, budget: range.id })
                               }
-                              className={`px-4 py-3 rounded-lg shadow-md shadow-gray-100/20 text-sm font-medium transition-all duration-200 ${
+                              className={`px-4 py-3 rounded-lg shadow-md shadow-border text-sm font-medium transition-all duration-200 ${
                                 formData.budget === range.id
                                   ? "border-accent text-white bg-accent/40 shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
@@ -405,7 +405,7 @@ const Contact = () => {
                                   timeline: timeline.id,
                                 })
                               }
-                              className={`px-4 py-3 rounded-lg shadow-md shadow-gray-100/20 text-sm font-medium transition-all duration-200 ${
+                              className={`px-4 py-3 rounded-lg shadow-md shadow-border text-sm font-medium transition-all duration-200 ${
                                 formData.timeline === timeline.id
                                   ? "border-accent text-white bg-accent/40 shadow-md"
                                   : "border-border text-text-secondary hover:border-accent/50 hover:text-accent bg-bg-primary"
@@ -430,7 +430,7 @@ const Contact = () => {
                             })
                           }
                           rows={6}
-                          className="w-full px-5 py-4 bg-bg-primary shadow-md shadow-gray-100/20 border-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:shadow-lg transition-all duration-200 resize-none"
+                          className="w-full px-5 py-4 bg-bg-primary shadow-md shadow-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:shadow-lg transition-all duration-200 resize-none"
                           placeholder="Opisz swoje cele, grupę docelową i wymagania..."
                         />
                       </div>
@@ -598,7 +598,6 @@ const Contact = () => {
                         }`}
                       >
                         Dalej
-                        <ArrowLongRightIcon className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
                       </button>
                     ) : (
                       <button
@@ -616,10 +615,7 @@ const Contact = () => {
                             Wysyłanie...
                           </>
                         ) : (
-                          <>
-                            Wyślij zapytanie
-                            <ArrowLongRightIcon className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-                          </>
+                          <>Wyślij zapytanie</>
                         )}
                       </button>
                     )}

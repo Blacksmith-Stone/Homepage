@@ -8,7 +8,7 @@ import { useLanguage } from "./Translations/LanguageContext";
 import Typewriter from "typewriter-effect";
 import "./ComponentsCSS/hero_animation.css";
 import { scrollToSection } from "./utils/ScrollUtils";
-import Particles from "./Particles";
+import Threads from "./Particles";
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -21,17 +21,7 @@ const Hero = () => {
   return (
     <section className="relative bg-bg-primary text-text-primary min-h-screen flex items-center justify-center overflow-hidden">
       {/* RippleGrid Background */}
-      <div className="absolute inset-0 z-0">
-        <Particles
-          particleColors={["#ffffff", "#ffffff"]}
-          particleCount={200}
-          particleSpread={20}
-          speed={0.1}
-          particleBaseSize={100}
-          alphaParticles={false}
-          disableRotation={false}
-        />
-      </div>
+      <div className="absolute inset-0 z-0"></div>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-5xl text-center px-6">
