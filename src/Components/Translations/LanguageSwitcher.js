@@ -104,7 +104,7 @@ const LanguageSwitcher = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-bg-primary backdrop-blur-md border border-border rounded-xl shadow-2xl shadow-black/50 z-50 overflow-hidden animate-fade-in-down">
+        <div className="absolute right-0 mt-2 w-48 bg-bg-primary backdrop-blur-md border border-border rounded-xl shadow-2xl shadow-black/50 z-50 overflow-hidden">
           <div className="p-2">
             {languages.map((lang, index) => (
               <button

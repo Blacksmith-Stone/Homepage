@@ -2,6 +2,19 @@ import React, { useEffect, useRef, useState, useMemo } from "react";
 import CountUp from "react-countup";
 import { useLanguage } from "./Translations/LanguageContext";
 import useScrollReveal from "./utils/useScrollReveal";
+import LogoLoop from "./utils/LogoLoop";
+import {
+  SiReact,
+  SiPython,
+  SiDjango,
+  SiFlask,
+  SiJavascript,
+  SiGit,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiNextdotjs,
+  SiGithub,
+} from "react-icons/si";
 
 const About = () => {
   const { t } = useLanguage();
@@ -88,6 +101,24 @@ const About = () => {
     ],
     [t]
   );
+
+  const techLogos = [
+    { node: <SiReact />, title: "React", href: "https://react.dev" },
+    { node: <SiPython />, title: "React", href: "https://react.dev" },
+    { node: <SiDjango />, title: "React", href: "https://react.dev" },
+    { node: <SiFlask />, title: "React", href: "https://react.dev" },
+    { node: <SiNodedotjs />, title: "React", href: "https://react.dev" },
+    { node: <SiJavascript />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiGithub />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiGit />, title: "Next.js", href: "https://nextjs.org" },
+
+    {
+      node: <SiTailwindcss />,
+      title: "Tailwind CSS",
+      href: "https://tailwindcss.com",
+    },
+  ];
 
   const techStack = [
     "React",
@@ -327,15 +358,25 @@ const About = () => {
           >
             {t("about.tech")}
           </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {techStack.map((tech, i) => (
+          <div className="flex flex-wrap justify-center gap-3 text-accent">
+            {/* {techStack.map((tech, i) => (
               <span
                 key={tech}
                 className="px-5 py-2.5 rounded-full border border-card-border text-gray-600 text-sm bg-white/5 hover:border-accent hover:text-accent transition-colors"
               >
                 {tech}
               </span>
-            ))}
+            ))} */}
+            <LogoLoop
+              logos={techLogos}
+              speed={35}
+              direction="left"
+              logoHeight={48}
+              gap={40}
+              hoverSpeed={0}
+              scaleOnHover="true"
+              ariaLabel="Technology partners"
+            />
           </div>
         </section>
 

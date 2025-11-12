@@ -148,14 +148,25 @@ export default function Navbar() {
               <ThemeSwitcher />
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="relative p-2 rounded-md text-accent hover:text-accent-hover hover:bg-accent/10 transition-all focus:outline-none focus:ring-2 focus:ring-accent/50"
+                className="relative p-2 rounded-md text-accent hover:bg-accent/10 transition-all focus:outline-none focus:ring-2 focus:ring-accent/50"
                 aria-label="Toggle menu"
               >
-                <Bars3Icon
-                  className={`h-6 w-6 transition-all duration-300 ${
-                    menuOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0"
-                  }`}
-                />
+                <div className="relative w-6 h-6">
+                  <Bars3Icon
+                    className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+                      menuOpen
+                        ? "opacity-0 rotate-90 scale-50"
+                        : "opacity-100 rotate-0 scale-100"
+                    }`}
+                  />
+                  <XMarkIcon
+                    className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+                      menuOpen
+                        ? "opacity-100 rotate-0 scale-100"
+                        : "opacity-0 -rotate-90 scale-50"
+                    }`}
+                  />
+                </div>
               </button>
             </div>
           </div>
@@ -174,21 +185,10 @@ export default function Navbar() {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-80 bg-bg-primary backdrop-blur-md z-50 transform transition-transform duration-300 ease-in-out md:hidden border-l border-border ${
+        className={`fixed top-16 right-0 h-[calc(100%-4rem)] w-full sm:w-80 bg-bg-primary backdrop-blur-md z-40 transform transition-transform duration-300 ease-in-out md:hidden border-l border-border ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close button */}
-        <div className="flex justify-end p-4">
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="p-2 rounded-md text-accent hover:text-accent-hover hover:bg-accent/10 transition-all focus:outline-none focus:ring-2 focus:ring-accent/50"
-            aria-label="Close menu"
-          >
-            <XMarkIcon className="h-6 w-6" />
-          </button>
-        </div>
-
         {/* Mobile Navigation Links */}
         <div className="flex flex-col items-center justify-center h-[calc(100%-80px)] space-y-8">
           {navigation.map((item, index) => (

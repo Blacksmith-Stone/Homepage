@@ -24,7 +24,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0"></div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-5xl text-center px-6">
+      <div className="relative z-10 max-w-5xl text-center px-6 max-md:pt-6 max-sm:pt-8">
         {/* Tech Icons */}
         <div className="flex justify-center gap-8 mb-8">
           <CodeBracketIcon
@@ -89,7 +89,7 @@ const Hero = () => {
         <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
           <button
             onClick={() => scrollToSection("#projects")}
-            className="group px-8 py-4 bg-accent rounded-full overflow-hidden transition-all duration-300  hover:scale-105"
+            className="group px-8 py-4 bg-accent rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 ease-out will-change-transform"
           >
             <span className="text-bg-primary group-hover:text-text-primary transition-all duration-300">
               {t("hero.cta.viewWork")}
@@ -98,7 +98,8 @@ const Hero = () => {
 
           <button
             onClick={() => scrollToSection("#contact")}
-            className="group px-8 py-4 rounded-full border-2 border-border hover:border-accent transition-all duration-300 hover:scale-105"
+            // will-change-transform - do optymalizacji animacji elementów
+            className="group px-8 py-4 rounded-full border-2 border-border hover:border-accent hover:scale-105 transition-transform duration-300 ease-out will-change-transform"
           >
             <span className="text-text-secondary group-hover:text-accent transition-all duration-300">
               {t("hero.cta.startProject")}
@@ -127,7 +128,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      <div className="max-md:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 ">
         <div className="flex flex-col items-center gap-2 text-text-muted">
           <span className="text-xs uppercase tracking-widest">
             {t("hero.scroll")}

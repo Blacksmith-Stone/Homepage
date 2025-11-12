@@ -430,7 +430,7 @@ const Contact = () => {
                             })
                           }
                           rows={6}
-                          className="w-full px-5 py-4 bg-bg-primary shadow-md shadow-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:shadow-lg transition-all duration-200 resize-none"
+                          className="w-full px-5 py-4 bg-bg-primary shadow-md shadow-border rounded-xl text-text-primary placeholder-text-muted focus:outline-2 resize-none"
                           placeholder="Opisz swoje cele, grupę docelową i wymagania..."
                         />
                       </div>
@@ -451,7 +451,7 @@ const Contact = () => {
                             onChange={(e) =>
                               setFormData({ ...formData, name: e.target.value })
                             }
-                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-all duration-200"
+                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent"
                             placeholder="Jan Kowalski"
                             required
                           />
@@ -470,7 +470,7 @@ const Contact = () => {
                                 email: e.target.value,
                               })
                             }
-                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-all duration-200"
+                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent"
                             placeholder="jan@firma.pl"
                             required
                           />
@@ -491,7 +491,7 @@ const Contact = () => {
                                 company: e.target.value,
                               })
                             }
-                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-all duration-200"
+                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent"
                             placeholder="Nazwa firmy"
                           />
                         </div>
@@ -509,7 +509,7 @@ const Contact = () => {
                                 phone: e.target.value,
                               })
                             }
-                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-all duration-200"
+                            className="w-full px-0 py-3 bg-transparent border-b-2 border-border text-text-primary placeholder-text-muted focus:outline-none focus:border-accent"
                             placeholder="+48 123 456 789"
                           />
                         </div>
