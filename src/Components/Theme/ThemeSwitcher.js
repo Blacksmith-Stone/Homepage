@@ -55,10 +55,10 @@ const ThemeSwitcherDropdown = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-xl bg-surface/50 backdrop-blur-sm border border-border hover:border-accent/30 hover:bg-surface-hover/50 transition-all duration-300 group"
+        className="flex items-center gap-2 px-3 py-2 group rounded-xl bg-bg-primary shadow-md shadow-border hover:scale-105 transition-transform duration-300 ease-out will-change-transform "
         aria-label="Theme switcher"
       >
-        <span className="text-text-secondary group-hover:text-accent transition-colors">
+        <span className="text-yellow-500 group-hover:text-accent transition-colors">
           {currentTheme?.icon}
         </span>
         <span className="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors hidden sm:inline">

@@ -74,7 +74,7 @@ const Footer = () => {
                   We transform ideas into powerful digital experiences.
                 </p>
                 {/* Social Links */}
-                <div className="flex gap-3 pt-4">
+                <div className="flex gap-3 pt-4 max-md:justify-center">
                   {socialLinks.map((social, idx) => (
                     <a
                       key={idx}

@@ -91,13 +91,13 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 bg-bg-primary/95 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           scrolled
             ? "bg-bg-primary/95 backdrop-blur-md shadow-lg border-b border-border"
             : ""
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -125,10 +125,10 @@ export default function Navbar() {
                     setMenuOpen(false);
                     scrollToSection(item.href);
                   }}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                  className={`px-3 py-2 rounded-md text-sm transition-all duration-200 ${
                     activeSection === item.href
-                      ? "text-accent bg-accent/10 shadow-sm"
-                      : "text-text-secondary hover:text-accent hover:bg-accent/5"
+                      ? "text-text-primary bg-accent/10 shadow-xl font-semibold"
+                      : "text-text-secondary hover:text-accent hover:bg-accent/10"
                   }`}
                 >
                   {item.name}

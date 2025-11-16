@@ -238,7 +238,7 @@ const Contact = () => {
                 <p className="text-xs uppercase tracking-widest text-text-secondary mb-6">
                   Social Media
                 </p>
-                <div className="flex gap-4">
+                <div className="flex gap-4 max-md:justify-center">
                   {[
                     { icon: <FaLinkedin />, href: "#" },
                     { icon: <FaGithub />, href: "#" },

@@ -65,7 +65,7 @@ const LanguageSwitcher = () => {
       {/* Main Button - Desktop */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl bg-bg-primary backdrop-blur-sm border border-border hover:border-accent/30 hover:bg-surface-hover/50 transition-all duration-300 group"
+        className="hidden md:flex items-center gap-2 px-3 py-2 group rounded-xl bg-bg-primary shadow-md shadow-border hover:scale-105 transition-transform duration-300 ease-out will-change-transform"
       >
         <div className="relative">
           {currentLang?.flag}
@@ -94,7 +94,7 @@ const LanguageSwitcher = () => {
       {/* Mobile Button - Simplified */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden flex items-center gap-1.5 px-2.5 py-2 rounded-lg bg-bg-primary backdrop-blur-sm border border-border"
+        className="md:hidden flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-bg-primary shadow-md shadow-border hover:scale-105 transition-transform duration-300 ease-out will-change-transform"
       >
         {currentLang?.flag}
         <span className="text-xs font-medium text-text-secondary">

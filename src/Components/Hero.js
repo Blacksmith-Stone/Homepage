@@ -9,10 +9,35 @@ import Typewriter from "typewriter-effect";
 import "./ComponentsCSS/hero_animation.css";
 import { scrollToSection } from "./utils/ScrollUtils";
 import Threads from "./Particles";
+import { GradFlow } from "gradflow";
 
 const Hero = () => {
   const { t, language } = useLanguage();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [theme, setTheme] = useState("dark");
+
+  // 🔥 Detect theme from your ThemeSwitcher
+  useEffect(() => {
+    // Initial load
+    const saved = localStorage.getItem("theme") || "dark";
+    setTheme(saved);
+
+    // Live updates when user switches theme
+    const observer = new MutationObserver(() => {
+      const current =
+        document.documentElement.getAttribute("data-theme") || "light";
+      setTheme(current);
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const isDark = theme === "dark";
 
   useEffect(() => {
     setIsLoaded(true);
@@ -20,8 +45,21 @@ const Hero = () => {
 
   return (
     <section className="relative bg-bg-primary text-text-primary min-h-screen flex items-center justify-center overflow-hidden">
-      {/* RippleGrid Background */}
-      <div className="absolute inset-0 z-0"></div>
+      <div className="absolute inset-0 z-0 max-md:hidden">
+        <GradFlow
+          config={{
+            color1: isDark
+              ? { r: 54, g: 161, b: 61 }
+              : { r: 14, g: 165, b: 233 },
+            color2: isDark ? { r: 0, g: 0, b: 0 } : { r: 245, g: 247, b: 250 },
+            color3: isDark ? { r: 0, g: 0, b: 0 } : { r: 245, g: 247, b: 250 },
+            speed: 0.9,
+            scale: 1.4,
+            type: "smoke",
+            noise: 0.0,
+          }}
+        />
+      </div>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-5xl text-center px-6 max-md:pt-6 max-sm:pt-8">

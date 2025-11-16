@@ -15,6 +15,7 @@ import {
   SiNextdotjs,
   SiGithub,
 } from "react-icons/si";
+import TrueFocus from "./utils/FocusText";
 
 const About = () => {
   const { t } = useLanguage();
@@ -29,7 +30,7 @@ const About = () => {
   const stats = useMemo(
     () => [
       { number: 20, suffix: "+", label: t("about.stats.projects") },
-      { number: 10, suffix: "+", label: t("about.stats.clients") },
+      { number: 40, suffix: "+", label: t("about.stats.clients") },
       { number: 4, suffix: "", label: t("about.stats.team") },
       { number: 7, suffix: "+", label: t("about.stats.experience") },
     ],
@@ -180,7 +181,7 @@ const About = () => {
             >
               <div className="text-4xl md:text-5xl font-light text-text-primary">
                 {isVisible("stats") ? (
-                  <CountUp end={s.number} suffix={s.suffix} duration={1.4} />
+                  <CountUp end={s.number} suffix={s.suffix} duration={8} />
                 ) : (
                   <span aria-hidden="true">0{s.suffix}</span>
                 )}
@@ -391,7 +392,14 @@ const About = () => {
           }`}
         >
           <p className="text-2xl md:text-3xl font-light text-text-primary mb-8">
-            Gotowy na współpracę?
+            <TrueFocus
+              sentence="Gotowy na współpracę?"
+              manualMode={false}
+              blurAmount={5}
+              borderColor="green"
+              animationDuration={2}
+              pauseBetweenAnimations={1}
+            />
           </p>
         </section>
       </div>
